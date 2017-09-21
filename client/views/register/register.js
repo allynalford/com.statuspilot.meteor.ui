@@ -122,8 +122,10 @@ Template.Register.events({
 
 				pageSession.set("errorMessage", "");
 				pageSession.set("verificationEmailSent", true);
+				Router.go("/payment");
 			}
 		});
+		
 		return false;
 	},
 

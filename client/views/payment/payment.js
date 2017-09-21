@@ -123,19 +123,20 @@ Template.Payment.events({
 				pageSession.set("errorMessage", "");
 				pageSession.set("verificationEmailSent", true);
 			}
-		});
+		});*/
 		return false;
-		*/
+		
 	},
 
 });
 
 Template.Payment.helpers({
+	/*
 	errorMessage: function() {
 		//return pageSession.get("errorMessage");
 	},
 	verificationEmailSent: function() {
 		//return pageSession.get("verificationEmailSent");
 	}
-	
+	*/
 });
