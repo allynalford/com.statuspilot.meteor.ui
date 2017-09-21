@@ -38,13 +38,40 @@ Template.UserSettingsInstagrams.events({
 		let target_audience = $(e.target).find('#target-audience').val();
 		let target_hashtags = $(e.target).find('#target-users').val();
 
-		console.log(this_id, insta_pass, target_audience, target_hashtags);
+		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
+		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
+		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
 
 		Instagrams.update({_id: this_id}, {
 			$set: {
 				password : insta_pass,
 				targetAudience : target_audience,
-				targetUsers : target_hashtags
+				targetUsers : target_hashtags,
+				features : {
+					save_user_stats: {
+						start_timestamp: Date.now(),
+						repeat_time: 180,
+						bot_params: "",
+						active: features_save_user_stats ? 1 : 0
+					},
+					like_hashtag: {
+						start_timestamp: Date.now(),
+						repeat_time: 180,
+						bot_params: {
+							hashtag: target_hashtags.split(',')
+						},
+						active: features_like_hashtag ? 1 : 0
+					},
+					like_medias_by_location: {
+						start_timestamp: Date.now(),
+						repeat_time: 180,
+						bot_params: {
+							locations: [ "Moscow", "Novosibirsk"],
+							amount: 1
+						},
+						active: features_like_medias_by_location ? 1 : 0
+					}
+				}
 			}
 		}, function (err, res) {
 			if (err) {
@@ -93,4 +120,11 @@ Template.UserSettingsInstagrams.helpers({
 		return Instagrams.find({belongs_to:Meteor.userId()}, {});
 	}
 	
+});
+
+
+Template.InstagramAccountSingle.helpers({
+	checkedIf: function(value) {
+		return value ? "checked" : ""
+	},
 });
