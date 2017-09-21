@@ -114,7 +114,32 @@ Template.Register.events({
 					username : register_instagram,
 					password : register_insta_pass,
 					targetAudience : register_target_audience,
-					targetUsers : register_target_hashtags
+					targetUsers : register_target_hashtags,
+					features : {
+						save_user_stats: {
+							start_timestamp: Date.now(),
+							repeat_time: 180,
+							bot_params: "",
+							active: 0
+						},
+						like_hashtag: {
+							start_timestamp: Date.now(),
+							repeat_time: 180,
+							bot_params: {
+								hashtag: add_target_hashtags.split(',')
+							},
+							active: 0
+						},
+						like_medias_by_location: {
+							start_timestamp: Date.now(),
+							repeat_time: 180,
+							bot_params: {
+								locations: [ "Moscow", "Novosibirsk"],
+								amount: 1
+							},
+							active: 0
+						}
+					}
 				}, function( error, result) {
 					if ( error ) console.log ( 'Instagram insert error is:' + error );
 					if ( result ) console.log ( 'Instagram insert result is:' + result );
