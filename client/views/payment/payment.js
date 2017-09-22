@@ -57,7 +57,7 @@ Template.Payment.events({
 		// creating user
 		submit_button.button("loading");
 
-		Router.go("/user_settings/instagram_accounts");
+		//Router.go("/user_settings/instagram_accounts");
 	},
 
 });
@@ -82,10 +82,11 @@ function stripeResponseHandler(status, response) {
 			else
 			{
 			  console.log('customer');
-			  console.log(result1);
-			  var customer_id = result1.id;
+			  //var customer_id = result1.id;
 			  var description = "Tripwire Description";
-			  console.log(customer_id);
+			  console.log(description);
+			  console.log(result1);
+			  //console.log(customer_id);
 				/*
 			  	Meteor.call('chargeCard', token ,amnt,customer_id,description, function(error, result2){
 				  if(error)

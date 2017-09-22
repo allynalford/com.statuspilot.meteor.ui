@@ -13,10 +13,20 @@ Meteor.startup(() => {
                     if(err)
                     {
                         console.log("Stripe customer create error");
+                        return {
+                            status: 0,
+                            data: null
+                        }
                     }
                     else
                     {
                         console.log("Stripe Customer Create");
+                        console.log(customer);
+                        return {
+                            status: 1,
+                            data: customer
+                        };
+
                     }
             });
         },
@@ -36,10 +46,18 @@ Meteor.startup(() => {
                     if(err)
                     {
                         console.log("Stripe Charge create error");
+                        return {
+                            status: 0,
+                            data: null
+                        }
                     }
                     else
                     {
                         console.log("Stripe Charge Create");
+                        return {
+                            status: 1,
+                            data: charge
+                        };
                     }
                 });
         },
@@ -58,6 +76,7 @@ Meteor.startup(() => {
                     else
                     {
                         console.log("Stripe Subscription create error");
+                        return subscription;
                     }
                 });
         },
