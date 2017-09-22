@@ -1,4 +1,4 @@
-
+var emailVar;
 Template.Payment.onCreated(function() {
 	
 });
@@ -27,17 +27,17 @@ Template.Payment.events({
 
 		// your account info
 		var register_username = t.find('#register_username').value.trim();
-		var register_email = t.find('#register_email').value;
-		var register_phone = t.find('#register_phone').value;
+		var register_email = t.find('#register_email').value.trim(); emailVar = register_email;
+		var register_phone = t.find('#register_phone').value.trim();
 		// Payment info
 		var plans = t.find('#plans').value.trim();
 		var setupfee = t.find('#setupfee').value.trim();
-		var cardnumber = t.find('#cardnumber').value;
-		var expire_year = t.find('#expire_year').value;
-		var expire_month = t.find('#expire_month').value;
-		var cvv = t.find('#cvv').value;
-		var country = t.find('#country').value;
-		var zipcode = t.find('#zipcode').value;
+		var cardnumber = t.find('#cardnumber').value.trim();
+		var expire_year = t.find('#expire_year').value.trim();
+		var expire_month = t.find('#expire_month').value.trim();
+		var cvv = t.find('#cvv').value.trim();
+		var country = t.find('#country').value.trim();
+		var zipcode = t.find('#zipcode').value.trim();
 
 		// check email
 		if(!isValidEmail(register_email))
@@ -72,8 +72,9 @@ function stripeResponseHandler(status, response) {
 	} else {
 
 		var token = response.id;
-/*
-		Meteor.call('createCustomer2', token,emailVar,function(error, result1){
+		console.log(token);
+
+		Meteor.call('createCustomer', token,emailVar,function(error, result1){
 			if(error)
 			{
 			  console.log(error);
@@ -84,8 +85,9 @@ function stripeResponseHandler(status, response) {
 			  console.log(result1);
 			  var customer_id = result1.id;
 			  var description = "Tripwire Description";
-
-			  	Meteor.call('chargeCard11', token ,amnt,customer_id,description, function(error, result2){
+			  console.log(customer_id);
+				/*
+			  	Meteor.call('chargeCard', token ,amnt,customer_id,description, function(error, result2){
 				  if(error)
 				  {
 					console.log(error);
@@ -122,9 +124,9 @@ function stripeResponseHandler(status, response) {
 						});
 					}
 				});
-
+				*/
 			}
 		});
-		*/
+		
 	}
 }
