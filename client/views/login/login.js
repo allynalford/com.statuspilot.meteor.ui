@@ -54,6 +54,7 @@ Template.Login.events({
 				return false;
 			}
 		});
+		Router.go("/user_settings/instagram_accounts");
 		return false; 
 	}
 

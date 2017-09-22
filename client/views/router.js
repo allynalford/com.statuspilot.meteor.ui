@@ -11,8 +11,8 @@ Router.publicRoutes = [
 	"register",
 	"verify_email",
 	"forgot_password",
-	"reset_password",
-	"payment"
+	"reset_password"
+	
 ];
 
 Router.privateRoutes = [
@@ -26,7 +26,8 @@ Router.privateRoutes = [
 	"user_settings.change_pass",
 	"user_settings.instagram_accounts",
 	"user_settings.add_instagram_account",
-	"logout"
+	"logout",
+	"payment"
 ];
 
 Router.freeRoutes = [
@@ -48,7 +49,8 @@ Router.roleMap = [
 
 Router.defaultFreeRoute = "";
 Router.defaultPublicRoute = "login";
-Router.defaultPrivateRoute = "user_settings.instagram_accounts";
+//Router.defaultPrivateRoute = "user_settings.instagram_accounts";
+Router.defaultPrivateRoute = "payment";
 
 Router.waitOn(function() { 
 	Meteor.subscribe("current_user_data");

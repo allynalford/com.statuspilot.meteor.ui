@@ -15,7 +15,7 @@ Template.UserSettingsInstagrams.onDestroyed(function() {
 
 Template.UserSettingsInstagrams.onRendered(function() {
 
-
+	
 	Meteor.defer(function() {
 		globalOnRendered();
 		$("input[autofocus]").focus();

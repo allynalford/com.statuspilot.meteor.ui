@@ -8,21 +8,30 @@
 					<form id="register_form" role="form">
 						<h4>Your Account Information</h4>
 						<div class="form-group">
-							<input id="register_first_name" type="text" class="form-control" placeholder="First Name" required>
-						</div>
-						<div class="form-group">
-							<input id="register_last_name" type="text" class="form-control" placeholder="Last Name" required>
+							<input id="register_username" type="text" class="form-control" placeholder="Username" required>
 						</div>
 						<div class="form-group">
 							<input id="register_email" type="text" class="form-control" placeholder="Email address" required>
 						</div>
 						<div class="form-group">
-							<input id="register_cell_no" type="text" class="form-control" placeholder="Phone Number">
+							<input id="register_phone" type="text" class="form-control" placeholder="Phone Number">
 						</div>
 
 						<br>
 
 						<h4> Payment Information</h4>
+						<div class="form-group">
+							<select id="plans" class="form-control">
+								<option value="">--Select Plans--</option>
+								<option value="">Plan1</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select id="setupfee" class="form-control">
+								<option value="">--Setup Fee--</option>
+								<option value="">Fee1</option>
+							</select>
+						</div>
 						<div class="form-group">
 							<input id="cardnumber" type="text" class="form-control" placeholder="Card Number" required>
 						</div>

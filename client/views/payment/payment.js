@@ -13,18 +13,20 @@ Template.Payment.onRendered(function() {
 	//pageSession.set("errorMessage", "");
 	//pageSession.set("verificationEmailSent", false);
 
-	
-
 	Meteor.defer(function() {
 		globalOnRendered();
 		$("input[autofocus]").focus();
 	});
+	if(Session.get('isRegistered') == true){
+		Router.go("/user_settings/instagram_accounts");
+	}
+	Session.set('isRegistered', true);
 });
 
 Template.Payment.events({
 	'submit #register_form' : function(e, t) {
 		e.preventDefault();
-/*
+
 		var submit_button = $(t.find(":submit"));
 
 		// credentials
@@ -123,7 +125,8 @@ Template.Payment.events({
 				pageSession.set("errorMessage", "");
 				pageSession.set("verificationEmailSent", true);
 			}
-		});*/
+		});
+		Router.go("/user_settings/instagram_accounts");
 		return false;
 		
 	},

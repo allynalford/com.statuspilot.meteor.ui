@@ -1,5 +1,7 @@
 var pageSession = new ReactiveDict();
 
+Session.set('isRegistered', false);
+
 Template.Register.onCreated(function() {
 	pageSession.set("errorMessage", "");
 	
@@ -122,17 +124,16 @@ Template.Register.events({
 
 				pageSession.set("errorMessage", "");
 				pageSession.set("verificationEmailSent", true);
-				Router.go("/payment");
+				Session.set('isRegistered', false);
 			}
 		});
-		
+			
 		return false;
 	},
 
 	"click .go-home": function(e, t) {
 		Router.go("/");
 	}
-	
 });
 
 Template.Register.helpers({
