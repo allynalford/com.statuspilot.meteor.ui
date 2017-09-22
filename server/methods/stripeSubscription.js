@@ -1,8 +1,10 @@
-
+var stripe = require("stripe")("sk_test_Xlvot5lSlBLb313mOMpaMrjH");
 Meteor.startup(() => {
 
     Meteor.methods({
         createSubscription: function(stripeToken, email, plan){
+
+            /*
             var Stripe = StripeAPI('sk_test_Xlvot5lSlBLb313mOMpaMrjH');
 
             var customer_id;
@@ -21,25 +23,64 @@ Meteor.startup(() => {
                         customer_id = customer.id;
                     }
             });
-
-            Stripe.subscriptions.create({
-                customer: customer_id,
-                items:[
+            */
+/*
+            Stripe.customers.createSubscription({
+                customerId: customer_id,
+                items: [
                     {
                         plan: plan,
                     },
                 ],
-                
             }, function(err, subscription) {
 
                 if(err)
                 {
                     console.log("Stripe Subscription create error");
+                    console.log(err);
                 }
                 else
                 {
                     console.log("Stripe Subscription create ");
                     console.log(subscription);
+                }
+            });
+            */
+            stripe.customers.create({
+                account_balance:0,    // starting account balance for customer, cents
+                business_vat_id:null, //cusomter's VAT identification number
+                coupon: null,         // coupon code
+                description: null,    // arbitrary string which u can attach to a customer object.
+                email: email,      //customer email address
+                source: stripeToken,         // token or source's Id
+                metadata:null,             //set of key/value; it is useful for storing additional information.
+                }, function(err, customer) {
+                  if(err)
+                  {
+                    console.log(err);
+                  }
+                  else {
+                      var customer_id = customer.id;  // customer id is required for the customer subscription
+                      console.log(customer);
+            
+                        //        creating subscription
+                      stripe.subscriptions.create({
+                        customer: customer_id,         // customer id
+                        items: [                       //subscription items list
+                          {
+                            plan: plan,     //plan Id
+                          },
+                        ],
+                      }, function(err, subscription) {
+                         if(err)
+                         {
+                           console.log(err);
+                         }
+                         else {
+                           console.log(subscription);
+                           console.log("subscription charged");
+                        }
+                    });
                 }
             });
         },
