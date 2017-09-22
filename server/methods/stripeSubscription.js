@@ -2,6 +2,47 @@
 Meteor.startup(() => {
 
     Meteor.methods({
+        createSubscription: function(stripeToken, email, plan){
+            var Stripe = StripeAPI('sk_test_Xlvot5lSlBLb313mOMpaMrjH');
+
+            var customer_id;
+            Stripe.customers.create({
+                email: email,
+                source: stripeToken,
+                }, function(err, customer) {
+                    if(err)
+                    {
+                        console.log("Stripe customer create error");
+                    }
+                    else
+                    {
+                        console.log("Stripe Customer Create");
+                        console.log(customer);
+                        customer_id = customer.id;
+                    }
+            });
+
+            Stripe.subscriptions.create({
+                customer: customer_id,
+                items:[
+                    {
+                        plan: plan,
+                    },
+                ],
+                
+            }, function(err, subscription) {
+
+                if(err)
+                {
+                    console.log("Stripe Subscription create error");
+                }
+                else
+                {
+                    console.log("Stripe Subscription create ");
+                    console.log(subscription);
+                }
+            });
+        },
         createCustomer: function(stripeToken , email) {
 
             var Stripe = StripeAPI('sk_test_Xlvot5lSlBLb313mOMpaMrjH');

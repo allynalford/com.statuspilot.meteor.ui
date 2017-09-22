@@ -74,18 +74,20 @@ function stripeResponseHandler(status, response) {
 		var token = response.id;
 		console.log(token);
 
-		Meteor.call('createCustomer', token,emailVar,function(error, result1){
+		var description = "Tripwire Description";
+		var plan = 'IG-RS-99-01';
+
+		var customer = Meteor.call('createSubscription', token, emailVar, plan, function(error, result1){
 			if(error)
 			{
 			  console.log(error);
 			}
 			else
 			{
-			  console.log('customer');
-			  //var customer_id = result1.id;
-			  var description = "Tripwire Description";
-			  console.log(description);
-			  console.log(result1);
+			  console.log('Creating Customer success');
+			}
+		});
+		console.log(customer);
 			  //console.log(customer_id);
 				/*
 			  	Meteor.call('chargeCard', token ,amnt,customer_id,description, function(error, result2){
@@ -126,8 +128,6 @@ function stripeResponseHandler(status, response) {
 					}
 				});
 				*/
-			}
-		});
 		
 	}
 }
