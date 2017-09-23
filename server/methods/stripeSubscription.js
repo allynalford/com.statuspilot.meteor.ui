@@ -24,7 +24,7 @@ Meteor.startup(() => {
                     }
             });
             */
-/*
+            /*
             Stripe.customers.createSubscription({
                 customerId: customer_id,
                 items: [
@@ -82,6 +82,29 @@ Meteor.startup(() => {
                         }
                     });
                 }
+            });
+        },
+        getPlanList: function() {
+            return new Promise (function(resolve, reject) {
+                stripe.plans.list(
+                    function(err, plans) {
+                        if(err) return reject(err);
+                        else {
+                            var planlist = plans.data;
+                            console.log(planlist);
+                            var l =  planlist.length;
+                            var i =0; 
+                            var plist = {};
+                            for(i=0; i<l; i=i+1){
+                                plist[i] = {};
+                                plist[i]['id'] = planlist[i].id;
+                                plist[i]['name'] = planlist[i].name;
+                            }
+                            console.log(plist);
+                            return resolve(plist);
+                        }
+                    }
+                );
             });
         },
         createCustomer: function(stripeToken , email) {

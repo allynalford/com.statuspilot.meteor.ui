@@ -27,7 +27,8 @@ Template.Payment.events({
 
 		// your account info
 		var register_username = t.find('#register_username').value.trim();
-		var register_email = t.find('#register_email').value.trim(); emailVar = register_email;
+		var register_email = t.find('#register_email').value.trim(); 
+		emailVar = register_email;
 		var register_phone = t.find('#register_phone').value.trim();
 		// Payment info
 		var plans = t.find('#plans').value.trim();
@@ -46,6 +47,9 @@ Template.Payment.events({
 			return false;
 		}
 
+		var ttt = getPlanList();
+		console.log(ttt);
+
 		Stripe.card.createToken({
 			number: cardnumber,
 			cvc:cvv,
@@ -63,20 +67,29 @@ Template.Payment.events({
 });
 
 Template.Payment.helpers({
-
+	options: function (){
+		Session.set("plist","");
+		Meteor.call('getPlanList', function(err, result){
+			if(err){
+				console.log(err);
+			}
+			else{
+				console.log(result);
+				Session.set("plist", result);
+			}
+		});
+		return Session.get("plist");
+	}
 });
+
 function stripeResponseHandler(status, response) {
 
 	if (response.error) { 
-	  console.log("stripe error");
+	  	console.log("stripe error");
 	} else {
-
 		var token = response.id;
 		console.log(token);
-
-		var description = "Tripwire Description";
-		var plan = 'IG-RS-99-01';
-
+		/*
 		var customer = Meteor.call('createSubscription', token, emailVar, plan, function(error, result1){
 			if(error)
 			{
@@ -88,7 +101,7 @@ function stripeResponseHandler(status, response) {
 			}
 		});
 		console.log(customer);
-			  //console.log(customer_id);
+		*/
 				/*
 			  	Meteor.call('chargeCard', token ,amnt,customer_id,description, function(error, result2){
 				  if(error)
@@ -127,7 +140,21 @@ function stripeResponseHandler(status, response) {
 						});
 					}
 				});
-				*/
+		*/
 		
 	}
+};
+
+function getPlanList(){
+	return new Promise (function(resolve, reject) {
+		Meteor.call('getPlanList', function(err, result){
+			if(err){
+				return reject(err);
+			}
+			else{
+				console.log(result);
+				return resolve(result);
+			}
+		});
+	});
 }
