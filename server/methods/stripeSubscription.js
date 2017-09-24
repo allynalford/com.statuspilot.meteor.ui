@@ -107,6 +107,22 @@ Meteor.startup(() => {
                 );
             });
         },
+        stripeCharge: function(stripeToken, amount){
+            stripe.charges.create({
+                amount: amount,
+                currency: "usd",
+                description: "Setup fee",
+                source: stripeToken,
+              }, function(err, charge) {
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log("charge successfully");
+                    console.log(charge);
+                    return charge;
+                }
+              });
+        },
         createCustomer: function(stripeToken , email) {
 
             var Stripe = StripeAPI('sk_test_Xlvot5lSlBLb313mOMpaMrjH');
