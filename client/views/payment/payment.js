@@ -78,6 +78,24 @@ Template.Payment.events({
 			},stripeResponseHandler);
 		
 		submit_button.button("loading");
+		var userId = Meteor.userId();
+		// const inst =  new Mongo.Collection('instagrams');
+		// const myUpdates = inst.find({belongs_to: userId}).find();
+
+		//myUpdates.update(myUpdates[0]._id, { $set: { active: true, paid: true}});
+		Instagrams.update({belongs_to: userId}, {
+		  $set: {
+			  active: true,
+			  paid : true
+		  }
+		  }, function (err, res) {
+			  if (err) {
+				  console.log(err);
+			  }
+			  if (res) {
+				  console.log(res);
+			  }
+		  });
 		sweetAlert("Setup fee and your Subscription is successfully charged!");
 	},
 
@@ -125,6 +143,7 @@ function stripeResponseHandler(status, response) {
 			  console.log('Creating Customer success');
 			  console.log(customer);
 			  Router.go("/user_settings/instagram_accounts");
+			  
 			}
 		});
 	}
