@@ -87,6 +87,7 @@ Router.map(function () {
 	this.route("/user_settings/profile", {name: "user_settings.profile", controller: "UserSettingsProfileController"});
 	this.route("/user_settings/change_pass", {name: "user_settings.change_pass", controller: "UserSettingsChangePassController"});
 	this.route("/user_settings/instagram_accounts", {name: "user_settings.instagram_accounts", controller: "UserSettingsInstagramsController"});
+	this.route("/user_settings/edit_instagram/:instaId", {name: "user_settings.edit_instagram", controller: "UserSettingsEditInstagramController"});
 	this.route("/user_settings/add_instagram_account", {name: "user_settings.add_instagram_account", controller: "UserSettingsAddInstagramController"});
 	this.route("/logout", {name: "logout", controller: "LogoutController"});
 
