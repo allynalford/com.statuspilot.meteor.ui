@@ -61,27 +61,28 @@ Template.UserSettingsAddInstagram.events({
 			targetUsers : add_target_hashtags,
 			features : {
 				save_user_stats: {
-					start_timestamp: Date.now(),
-					repeat_time: 180,
+					start_timestamp: 0,
+					repeat_time: 3600,
 					bot_params: "",
-					active: features_save_user_stats ? 1 : 0
+					active: features_save_user_stats ? true : false
 				},
 				like_hashtag: {
-					start_timestamp: Date.now(),
-					repeat_time: 180,
+					start_timestamp: 0,
+					repeat_time: 3600,
 					bot_params: {
-						hashtag: add_target_hashtags.split(',')
+						hashtag: add_target_hashtags.split(','),
+						amount: 8
 					},
-					active: features_like_hashtag ? 1 : 0
+					active: features_like_hashtag ? true : false
 				},
 				like_medias_by_location: {
-					start_timestamp: Date.now(),
-					repeat_time: 180,
+					start_timestamp: 0,
+					repeat_time: 3600,
 					bot_params: {
 						locations: [ "Moscow", "Novosibirsk"],
-						amount: 1
+						amount: 8
 					},
-					active: features_like_medias_by_location ? 1 : 0
+					active: features_like_medias_by_location ? true : false
 				}
 			}
 		}, function( error, result) {
