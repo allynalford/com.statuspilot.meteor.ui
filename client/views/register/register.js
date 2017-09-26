@@ -32,6 +32,7 @@ Template.Register.events({
 		var register_password = t.find('#register_password').value;
 		var confirm_password = t.find('#confirm_password').value;
 		// personal info
+		var register_company = t.find('#register_company').value.trim();
 		var register_email = t.find('#register_email').value.trim();
 		var register_first_name = t.find('#register_first_name').value.trim();
 		var register_last_name = t.find('#register_last_name').value.trim();
@@ -71,6 +72,7 @@ Template.Register.events({
 			email: register_email,
 			password : register_password,
 			profile: {
+				company: register_company,
 				firstName: register_first_name,
 				lastName: register_last_name,
 				cellPhone: register_cell_no,
