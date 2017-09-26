@@ -38,11 +38,11 @@ Router.roleMap = [
 	{ route: "admin.users.details",	roles: ["admin"] },
 	{ route: "admin.users.insert",	roles: ["admin"] },
 	{ route: "admin.users.edit",	roles: ["admin"] },
-	{ route: "user_settings",	roles: ["subscriber","admin"] },
-	{ route: "user_settings.profile",	roles: ["subscriber","admin"] },
-	{ route: "user_settings.change_pass",	roles: ["subscriber","admin"] },
-	{ route: "user_settings.instagram_accounts",	roles: ["subscriber","admin"] },
-	{ route: "user_settings.add_instagram_account",	roles: ["subscriber","admin"] }
+	{ route: "user_settings",	roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.profile",	roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.change_pass",	roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.instagram_accounts",	roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.add_instagram_account",	roles: ["subscriber", "manager", "admin"] }
 ];
 
 Router.defaultFreeRoute = "";
