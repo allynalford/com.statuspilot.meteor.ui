@@ -36,15 +36,6 @@ Template.Register.events({
 		var register_first_name = t.find('#register_first_name').value.trim();
 		var register_last_name = t.find('#register_last_name').value.trim();
 		var register_cell_no = t.find('#register_cell_no').value.trim();
-		// instagram info
-		var register_instagram = t.find('#register_instagram').value.trim();
-		var register_insta_pass = t.find('#register_insta_pass').value.trim();
-		var confirm_insta_pass = t.find('#confirm_insta_pass').value.trim();
-		// targets
-		var register_target_audience = t.find('#register_target_audience').value.trim();
-		var register_target_hashtags = t.find('#register_target_hashtags').value.trim();
-		var register_phrase = t.find('#register_phrase').value.trim();
-		var register_yes_no = t.find('#register_yes_no').value.trim();
 		var register_country = t.find('#register_country').value.trim();
 
 
@@ -73,14 +64,6 @@ Template.Register.events({
 			return false;
 		}
 
-		// check instagram pass
-		if(register_insta_pass !== confirm_insta_pass)
-		{
-			pageSession.set("errorMessage", "Instagram passwords don't match.");
-			t.find('#confirm_insta_pass').focus();
-			return false;
-		}
-
 		// creating user
 		submit_button.button("loading");
 		Accounts.createUser({
@@ -88,63 +71,20 @@ Template.Register.events({
 			email: register_email,
 			password : register_password,
 			profile: {
-				// personal
 				firstName: register_first_name,
 				lastName: register_last_name,
 				cellPhone: register_cell_no,
 				country: register_country,
-				// misc
-				commentPhrase: register_phrase,
-				yesNo: register_yes_no,
 			}
 		}, function(err) {
 			submit_button.button("reset");
 			if(err) {
-				if(err.error === 499) {
+				if (err.error === 499) {
 					pageSession.set("verificationEmailSent", true);
 				} else {
 					pageSession.set("errorMessage", err.message);
 				}
 			} else {
-				Instagrams.insert({
-					belongs_to: Users.findOne({username:register_username})._id,
-					active : false,
-					lastPayDate : null,
-					paid : false,
-					username : register_instagram,
-					password : register_insta_pass,
-					targetAudience : register_target_audience,
-					targetUsers : register_target_hashtags,
-					features : {
-						save_user_stats: {
-							start_timestamp: Date.now(),
-							repeat_time: 180,
-							bot_params: "",
-							active: 0
-						},
-						like_hashtag: {
-							start_timestamp: Date.now(),
-							repeat_time: 180,
-							bot_params: {
-								hashtag: add_target_hashtags.split(',')
-							},
-							active: 0
-						},
-						like_medias_by_location: {
-							start_timestamp: Date.now(),
-							repeat_time: 180,
-							bot_params: {
-								locations: [ "Moscow", "Novosibirsk"],
-								amount: 1
-							},
-							active: 0
-						}
-					}
-				}, function( error, result) {
-					if ( error ) console.log ( 'Instagram insert error is:' + error );
-					if ( result ) console.log ( 'Instagram insert result is:' + result );
-				});
-
 				pageSession.set("errorMessage", "");
 				pageSession.set("verificationEmailSent", true);
 			}

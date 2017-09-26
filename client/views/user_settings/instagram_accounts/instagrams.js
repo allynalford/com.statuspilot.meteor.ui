@@ -66,7 +66,7 @@ Template.UserSettingsInstagrams.events({
 						start_timestamp: Date.now(),
 						repeat_time: 180,
 						bot_params: {
-							locations: [ "Moscow", "Novosibirsk"],
+							locations: [ "Dhaka", "Moscow" ],
 							amount: 1
 						},
 						active: features_like_medias_by_location ? 1 : 0
