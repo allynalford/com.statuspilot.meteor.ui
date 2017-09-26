@@ -191,7 +191,7 @@ Meteor.methods({
 });
 
 Accounts.onCreateUser(function (options, user) {
-	user.roles = ["subscriber"];
+	user.roles = ["subscriber", "manager"];
 
 	if(options.profile) {
 		user.profile = options.profile;
