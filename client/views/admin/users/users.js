@@ -288,16 +288,18 @@ Template.AdminUsersViewTableItems.events({
 	"click #delete-button": function(e, t) {
 		e.preventDefault();
 		var me = this;
+		var this_id = $(e.target).attr('u-id');
+
 		bootbox.dialog({
-			message: "Delete? Are you sure?",
-			title: "Delete",
-			animate: false,
+			message: "Are you sure to delete this user?",
+			title: "Delete User",
+			animate: true,
 			buttons: {
 				success: {
 					label: "Yes",
 					className: "btn-success",
 					callback: function() {
-						Meteor.call("", me._id, function(err, res) {
+						Meteor.call("removeUserAccount", me._id, function(err, res) {
 							if(err) {
 								alert(err.message);
 							}
@@ -312,17 +314,13 @@ Template.AdminUsersViewTableItems.events({
 		});
 		return false;
 	},
+
 	"click #edit-button": function(e, t) {
 		e.preventDefault();
 		Router.go("admin.users.edit", mergeObjects(Router.currentRouteParams(), {userId: this._id}));
 		return false;
-	},
-	// "click #remove-button": function(e, t) {
-	// 	e.preventDefault();
-	// 	var this_id = $(e.target).attr('u-id');
-	// 	Meteor.users.remove(this_id);
-	// 	return false;
-	// }
+	}
+
 });
 
 Template.AdminUsersViewTableItems.helpers({
