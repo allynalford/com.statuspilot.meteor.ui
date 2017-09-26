@@ -23,86 +23,39 @@ Template.UserSettingsInstagrams.onRendered(function() {
 });
 
 Template.UserSettingsInstagrams.events({
-	'submit .instagrams_form' : function(e, t) {
+
+	'click .edit-instagram-account': function(e) {
 		e.preventDefault();
-
-		var submit_button = $(e.target).find(":submit");
-		submit_button.button("loading");
-		
-		pageSession.set("errorMessage", "");
-		pageSession.set("infoMessage", "");
-
-		let this_id = $(e.target).find('.single-wrap').attr('data-id');
-		let username = $(e.target).find('#username').val();
-		let insta_pass = $(e.target).find('#password').val();
-		let target_audience = $(e.target).find('#target-audience').val();
-		let target_hashtags = $(e.target).find('#target-users').val();
-
-		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
-		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
-		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
-
-		Instagrams.update({_id: this_id}, {
-			$set: {
-				password : insta_pass,
-				targetAudience : target_audience,
-				targetUsers : target_hashtags,
-				features : {
-					save_user_stats: {
-						start_timestamp: Date.now(),
-						repeat_time: 180,
-						bot_params: "",
-						active: features_save_user_stats ? 1 : 0
-					},
-					like_hashtag: {
-						start_timestamp: Date.now(),
-						repeat_time: 180,
-						bot_params: {
-							hashtag: target_hashtags.split(',')
-						},
-						active: features_like_hashtag ? 1 : 0
-					},
-					like_medias_by_location: {
-						start_timestamp: Date.now(),
-						repeat_time: 180,
-						bot_params: {
-							locations: [ "Dhaka", "Moscow" ],
-							amount: 1
-						},
-						active: features_like_medias_by_location ? 1 : 0
-					}
-				}
-			}
-		}, function (err, res) {
-			if (err) {
-				throw err;
-				pageSession.set("errorMessage", err);
-			}
-			if (res) {
-				console.log(res);
-				submit_button.button("reset");
-				pageSession.set("errorMessage", "");
-				pageSession.set("infoMessage", "Instagram profile updated for <strong>" + username + "</strong>");
-			}
-		});
-
-		return false;
+		let this_id = $(e.target).parents('.tab-pane').attr('data-id');
+		Router.go( "user_settings.edit_instagram", mergeObjects(Router.currentRouteParams(), {instaId: this_id}) );
 	},
 
 	'click .delete-instagram-account': function(e) {
 		e.preventDefault();
 
-		let this_id = $(e.target).parents('.single-wrap').attr('data-id');
-		let username = $(e.target).parents('.single-wrap').find('#username').val();
+		let this_id = $(e.target).parents('.tab-pane').attr('data-id');
+		let username = $(e.target).parents('.tab-pane').find('.username').text();
 
-		Instagrams.remove( {_id: this_id}, function(err, res){
-			if (err) {
-				throw err;
-				pageSession.set("errorMessage", err);
-			}
-			if (res) {
-				pageSession.set("errorMessage", "");
-				pageSession.set("infoMessage", "Instagram profile <strong>" + username + "</strong> removed");
+		bootbox.dialog({
+			message: "Are you sure to delete this Instagram account: <strong>" + username + "</strong>?",
+			title: "Delete Instagram account",
+			animate: true,
+			buttons: {
+				success: {
+					label: "Yes",
+					className: "btn-danger",
+					callback: function() {
+						Meteor.call("instagramsRemove", this_id, function(err, res) {
+							if(err) {
+								alert(err.message);
+							}
+						});
+					}
+				},
+				danger: {
+					label: "No",
+					className: "btn-default"
+				}
 			}
 		});
 	}
