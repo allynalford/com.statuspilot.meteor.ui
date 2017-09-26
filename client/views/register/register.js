@@ -1,4 +1,4 @@
-var pageSession = new ReactiveDict();
+let pageSession = new ReactiveDict();
 
 Template.Register.onCreated(function() {
 	pageSession.set("errorMessage", "");
@@ -25,19 +25,19 @@ Template.Register.events({
 	'submit #register_form' : function(e, t) {
 		e.preventDefault();
 
-		var submit_button = $(t.find(":submit"));
+		let submit_button = $(t.find(":submit"));
 
 		// credentials
-		var register_username = t.find('#register_username').value.trim();
-		var register_password = t.find('#register_password').value;
-		var confirm_password = t.find('#confirm_password').value;
+		let register_username = t.find('#register_username').value.trim();
+		let register_password = t.find('#register_password').value;
+		let confirm_password = t.find('#confirm_password').value;
 		// personal info
-		var register_company = t.find('#register_company').value.trim();
-		var register_email = t.find('#register_email').value.trim();
-		var register_first_name = t.find('#register_first_name').value.trim();
-		var register_last_name = t.find('#register_last_name').value.trim();
-		var register_cell_no = t.find('#register_cell_no').value.trim();
-		var register_country = t.find('#register_country').value.trim();
+		let register_company = t.find('#register_company').value.trim();
+		let register_email = t.find('#register_email').value.trim();
+		let register_first_name = t.find('#register_first_name').value.trim();
+		let register_last_name = t.find('#register_last_name').value.trim();
+		let register_cell_no = t.find('#register_cell_no').value.trim();
+		let register_country = t.find('#register_country').value.trim();
 
 
 		// check email
@@ -49,7 +49,7 @@ Template.Register.events({
 		}
 
 		// check password
-		var min_password_len = 6;
+		let min_password_len = 6;
 
 		if(register_password !== confirm_password)
 		{
