@@ -1,0 +1,133 @@
+<template name="UserSettingsEditInstagram">
+	<a class="btn btn-theme" href="{{pathFor 'user_settings.instagram_accounts'}}">Go Back</a>
+	<h2>
+		Edit Instagram Account
+	</h2>
+	{{#if errorMessage}}
+	<div class="alert alert-warning">
+		{{errorMessage}}
+	</div>
+	{{/if}}
+
+	{{#if infoMessage}}
+	<div class="alert alert-success">
+		{{{infoMessage}}}
+	</div>
+	{{/if}}
+
+
+	<form class="instagrams_form" role="form">
+		<div class="single-wrap" data-id="{{instagram_account._id}}">
+			<h4>Account: {{instagram_account.username}}</h4>
+			<div class="form-group">
+				<label for="username">
+					<i class="fa fa-instagram"></i> Username
+				</label>
+				<div class="input-div">
+					<input id="username" type="text" class="form-control" value="{{instagram_account.username}}" disabled>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password">
+					<i class="fa fa-instagram"></i> Password
+				</label>
+				<div class="input-div">
+					<input id="password" type="password" class="form-control" value="{{instagram_account.password}}" required>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="active">
+					Active?
+				</label>
+				<div class="input-div">
+					<input id="active" type="text" class="form-control" value="{{#if instagram_account.active}} Active {{else}} Inactive {{/if}}" disabled>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="paid">
+					Paid?
+				</label>
+				<div class="input-div">
+					<input id="paid" type="text" class="form-control" value="{{#if instagram_account.paid}} Paid {{else}} Unpaid {{/if}}" disabled>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="last-pay-date">
+					Last Pay Date
+				</label>
+				<div class="input-div">
+					<input id="last-pay-date" type="text" class="form-control" value="{{instagram_account.lastPayDate}}" disabled>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="target-audience">
+					Target Audience
+				</label>
+				<div class="input-div">
+					<input id="target-audience" type="text" class="form-control" value="{{instagram_account.targetAudience}}">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="target-users">
+					Target Users
+				</label>
+				<div class="input-div">
+					<input id="target-users" type="text" class="form-control" value="{{instagram_account.targetUsers}}">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="features">
+					<h3>Features</h3>
+				</label>
+				<div class="input-div">
+					<input type="checkbox" {{checkedIf instagram_account.features.save_user_stats.active}} name="features" id="save_user_stats" value="save_user_stats">
+					<label for="save_user_stats">Save User Stats</label> <br>
+					<input type="checkbox" {{checkedIf instagram_account.features.like_hashtag.active}} name="features" id="like_hashtag" value="like_hashtag">
+					<label for="like_hashtag">Like Hashtag</label> <br>
+					<input type="checkbox" {{checkedIf instagram_account.features.like_medias_by_location.active}} name="features" id="like_medias_by_location" value="like_medias_by_location">
+					<label for="like_medias_by_location">Like Medias by Location</label> <br>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="submit-div">
+					<button id="form-submit-button" class="btn btn-success" type="submit" data-loading-text="Please wait...">
+						<span class="fa fa-check"></span>
+						Update Account Information
+					</button>
+					<a class="btn btn-theme" href="{{pathFor 'user_settings.instagram_accounts'}}">Go Back</a>
+				</div>
+			</div>
+			<br>
+		</div>
+	</form>
+</template>
