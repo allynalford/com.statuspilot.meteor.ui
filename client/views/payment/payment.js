@@ -125,6 +125,7 @@ function stripeResponseHandler(status, response) {
 					}
 					if (res) {
 						// TODO: change sweetAlert to Bert.alert()
+						Session.set("ig-id", null);
 						sweetAlert("Setup fee and your Subscription is successfully charged!");
 						Router.go("/user_settings/instagram_accounts");
 					}
