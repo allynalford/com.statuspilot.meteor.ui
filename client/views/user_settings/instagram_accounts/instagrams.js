@@ -45,9 +45,9 @@ Template.UserSettingsInstagrams.events({
 					label: "Yes",
 					className: "btn-danger",
 					callback: function() {
-						Meteor.call("instagramsRemove", this_id, function(err, res) {
+						Meteor.call("removeInstagram", this_id, function(err, res) {
 							if(err) {
-								alert(err.message);
+								console.log(err.message);
 							}
 						});
 					}
