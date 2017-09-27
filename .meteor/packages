@@ -35,3 +35,5 @@ reactive-dict@1.1.9
 mizzao:bootboxjs
 momentjs:moment
 rajit:bootstrap3-datepicker
+mrgalaxy:stripe
+kevohagan:sweetalert

@@ -25,7 +25,8 @@ Router.privateRoutes = [
 	"user_settings.change_pass",
 	"user_settings.instagram_accounts",
 	"user_settings.add_instagram_account",
-	"logout"
+	"logout",
+	"payment"
 ];
 
 Router.freeRoutes = [
@@ -90,6 +91,7 @@ Router.map(function () {
 	this.route("/user_settings/edit_instagram/:instaId", {name: "user_settings.edit_instagram", controller: "UserSettingsEditInstagramController"});
 	this.route("/user_settings/add_instagram_account", {name: "user_settings.add_instagram_account", controller: "UserSettingsAddInstagramController"});
 	this.route("/logout", {name: "logout", controller: "LogoutController"});
+	this.route("/payment", {name: "payment", controller: "PaymentController"});
 
 	// global routes - access to everyone
 	this.route("/", {name: "home", controller: "Home"});
