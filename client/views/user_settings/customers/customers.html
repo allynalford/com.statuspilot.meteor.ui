@@ -23,8 +23,10 @@
 <template name="CustomerSingle">
 	<div class="tab-content col-sm-4">
 		<div class="tab-pane text-center active" data-id="{{this._id}}">
-			<h4><i class="fa fa-customer"></i> <span class="username">{{this.username}}</span></h4>
-			<p>Status: {{#if this.active}} Active {{else}} Inactive {{/if}}</p>
+			<h4><i class="fa fa-customer"></i> <span class="username">{{this.name}}</span></h4>
+			<p>Email: {{this.email}}</p>
+			<p>City: {{this.city}}</p>
+			<p>State: {{this.state}}</p>
 
 			<hr>
 
