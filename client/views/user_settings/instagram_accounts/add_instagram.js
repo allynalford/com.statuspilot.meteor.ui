@@ -39,6 +39,7 @@ Template.UserSettingsAddInstagram.events({
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
 		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
 		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
+		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
 
 		// check instagram pass
 		if(add_insta_pass !== confirm_insta_pass)
@@ -68,7 +69,7 @@ Template.UserSettingsAddInstagram.events({
 				},
 				like_hashtag: {
 					start_timestamp: 0,
-					repeat_time: 3600,
+					repeat_time: 21600,
 					bot_params: {
 						hashtag: add_target_hashtags.split(','),
 						amount: 8
@@ -77,12 +78,20 @@ Template.UserSettingsAddInstagram.events({
 				},
 				like_medias_by_location: {
 					start_timestamp: 0,
-					repeat_time: 3600,
+					repeat_time: 21600,
 					bot_params: {
 						locations: [ "Moscow", "Novosibirsk"],
 						amount: 8
 					},
 					active: features_like_medias_by_location ? true : false
+				},
+				like_timeline: {
+					start_timestamp: 0,
+					repeat_time: 21600,
+					bot_params: {
+						amount: 8
+					},
+					active: features_like_timeline ? true : false
 				}
 			}
 		}, function( error, result) {

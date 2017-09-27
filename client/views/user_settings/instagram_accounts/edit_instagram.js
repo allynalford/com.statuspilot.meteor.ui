@@ -41,7 +41,8 @@ Template.UserSettingsEditInstagram.events({
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
 		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
 		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
-
+		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
+		
 		Instagrams.update({_id: this_id}, {
 			$set: {
 				password : insta_pass,
@@ -49,29 +50,17 @@ Template.UserSettingsEditInstagram.events({
 				targetUsers : target_hashtags,
 				features : {
 					save_user_stats: {
-						// start_timestamp: 0,
-						repeat_time: 3600,
-						bot_params: "",
 						active: features_save_user_stats ? true : false
 					},
 					like_hashtag: {
-						// start_timestamp: 0,
-						repeat_time: 3600,
-						bot_params: {
-							hashtag: target_hashtags.split(','),
-							amount: 8
-						},
 						active: features_like_hashtag ? true : false
 					},
 					like_medias_by_location: {
-						// start_timestamp: 0,
-						repeat_time: 3600,
-						bot_params: {
-							locations: [ "Dhaka", "Moscow" ],
-							amount: 8
-						},
 						active: features_like_medias_by_location ? true : false
-					}
+					},
+					like_timeline: {
+						active: features_like_timeline ? true : false
+					},
 				}
 			}
 		}, function (err, res) {
