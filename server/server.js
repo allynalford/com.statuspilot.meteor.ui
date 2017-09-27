@@ -113,7 +113,8 @@ Meteor.startup(function() {
 });
 
 Meteor.methods({
-	"createUserAccount": function(options) {
+
+	createUserAccount: function(options) {
 		if(!Users.isAdmin(Meteor.userId())) {
 			throw new Meteor.Error(403, "Access denied.");
 		}
@@ -127,7 +128,8 @@ Meteor.methods({
 
 		Accounts.createUser(userOptions);
 	},
-	"updateUserAccount": function(userId, options) {
+
+	updateUserAccount: function(userId, options) {
 		// only admin or users own profile
 		if(!(Users.isAdmin(Meteor.userId()) || userId == Meteor.userId())) {
 			throw new Meteor.Error(403, "Access denied.");
@@ -183,6 +185,14 @@ Meteor.methods({
 		}
 	},
 
+	removeUserAccount: function(userId) {
+		if(Users.isAdmin(Meteor.userId())) {
+			// TO-DO: Remove associated Instagram accounts too?
+			
+			Meteor.users.remove({ _id: userId });
+		}			
+	},
+
 	"sendMail": function(options) {
 		this.unblock();
 
@@ -191,7 +201,7 @@ Meteor.methods({
 });
 
 Accounts.onCreateUser(function (options, user) {
-	user.roles = ["subscriber"];
+	user.roles = ["subscriber", "manager"];
 
 	if(options.profile) {
 		user.profile = options.profile;

@@ -105,9 +105,10 @@ Template.AdminUsersEditEditForm.events({
 
 			},
 			function(values) {
-				
-
-				Meteor.call("updateUserAccount", t.data.admin_user._id, values, function(e, r) { if(e) errorAction(e); else submitAction(r); });
+				Meteor.call("updateUserAccount", t.data.admin_user._id, values, function(e, r) {
+					if(e) errorAction(e);
+					else submitAction(r);
+				});
 			}
 		);
 

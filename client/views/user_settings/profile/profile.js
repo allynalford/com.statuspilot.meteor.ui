@@ -105,9 +105,10 @@ Template.UserSettingsProfileEditForm.events({
 
 			},
 			function(values) {
-				
-
-				Meteor.call("updateUserAccount", t.data.current_user_data._id, values, function(e, r) { if(e) errorAction(e); else submitAction(r); });
+				Meteor.call("updateUserAccount", t.data.current_user_data._id, values, function(e, r) {
+					if(e) errorAction(e);
+					else submitAction(r);
+				});
 			}
 		);
 
@@ -115,8 +116,6 @@ Template.UserSettingsProfileEditForm.events({
 	},
 	"click #form-cancel-button": function(e, t) {
 		e.preventDefault();
-
-		
 
 		/*CANCEL_REDIRECT*/
 	},

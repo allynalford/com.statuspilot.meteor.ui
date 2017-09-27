@@ -15,7 +15,6 @@ Template.UserSettingsInstagrams.onDestroyed(function() {
 
 Template.UserSettingsInstagrams.onRendered(function() {
 
-	
 	Meteor.defer(function() {
 		globalOnRendered();
 		$("input[autofocus]").focus();
@@ -23,61 +22,48 @@ Template.UserSettingsInstagrams.onRendered(function() {
 });
 
 Template.UserSettingsInstagrams.events({
-	'submit .instagrams_form' : function(e, t) {
+
+	'click .edit-instagram-account': function(e) {
 		e.preventDefault();
-
-		var submit_button = $(e.target).find(":submit");
-		submit_button.button("loading");
-		
-		pageSession.set("errorMessage", "");
-		pageSession.set("infoMessage", "");
-
-		let this_id = $(e.target).find('.single-wrap').attr('data-id');
-		let username = $(e.target).find('#username').val();
-		let insta_pass = $(e.target).find('#password').val();
-		let target_audience = $(e.target).find('#target-audience').val();
-		let target_hashtags = $(e.target).find('#target-users').val();
-
-		console.log(this_id, insta_pass, target_audience, target_hashtags);
-
-		Instagrams.update({_id: this_id}, {
-			$set: {
-				password : insta_pass,
-				targetAudience : target_audience,
-				targetUsers : target_hashtags
-			}
-		}, function (err, res) {
-			if (err) {
-				throw err;
-				pageSession.set("errorMessage", err);
-			}
-			if (res) {
-				console.log(res);
-				submit_button.button("reset");
-				pageSession.set("errorMessage", "");
-				pageSession.set("infoMessage", "Instagram profile updated for <strong>" + username + "</strong>");
-			}
-		});
-
-		return false;
+		let this_id = $(e.target).parents('.tab-pane').attr('data-id');
+		Router.go( "user_settings.edit_instagram", mergeObjects(Router.currentRouteParams(), {instaId: this_id}) );
 	},
 
 	'click .delete-instagram-account': function(e) {
 		e.preventDefault();
 
-		let this_id = $(e.target).parents('.single-wrap').attr('data-id');
-		let username = $(e.target).parents('.single-wrap').find('#username').val();
+		let this_id = $(e.target).parents('.tab-pane').attr('data-id');
+		let username = $(e.target).parents('.tab-pane').find('.username').text();
 
-		Instagrams.remove( {_id: this_id}, function(err, res){
-			if (err) {
-				throw err;
-				pageSession.set("errorMessage", err);
-			}
-			if (res) {
-				pageSession.set("errorMessage", "");
-				pageSession.set("infoMessage", "Instagram profile <strong>" + username + "</strong> removed");
+		bootbox.dialog({
+			message: "Are you sure to delete this Instagram account: <strong>" + username + "</strong>?",
+			title: "Delete Instagram account",
+			animate: true,
+			buttons: {
+				success: {
+					label: "Yes",
+					className: "btn-danger",
+					callback: function() {
+						Meteor.call("instagramsRemove", this_id, function(err, res) {
+							if(err) {
+								alert(err.message);
+							}
+						});
+					}
+				},
+				danger: {
+					label: "No",
+					className: "btn-default"
+				}
 			}
 		});
+	},
+
+	'click instagram-payment': function(e) {
+		let this_id = $(e.target).parents('.tab-pane').attr('data-id');
+		console.log('clicked on payment button');
+		Session.set("ig-id", this_id);
+		Router.go("/payment");
 	}
 
 });
@@ -93,4 +79,11 @@ Template.UserSettingsInstagrams.helpers({
 		return Instagrams.find({belongs_to:Meteor.userId()}, {});
 	}
 	
+});
+
+
+Template.InstagramAccountSingle.helpers({
+	checkedIf: function(value) {
+		return value ? "checked" : ""
+	},
 });

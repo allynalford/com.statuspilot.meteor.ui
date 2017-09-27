@@ -12,7 +12,6 @@ Router.publicRoutes = [
 	"verify_email",
 	"forgot_password",
 	"reset_password"
-	
 ];
 
 Router.privateRoutes = [
@@ -40,17 +39,16 @@ Router.roleMap = [
 	{ route: "admin.users.details",	roles: ["admin"] },
 	{ route: "admin.users.insert",	roles: ["admin"] },
 	{ route: "admin.users.edit",	roles: ["admin"] },
-	{ route: "user_settings",	roles: ["subscriber","admin"] },
-	{ route: "user_settings.profile",	roles: ["subscriber","admin"] },
-	{ route: "user_settings.change_pass",	roles: ["subscriber","admin"] },
-	{ route: "user_settings.instagram_accounts",	roles: ["subscriber","admin"] },
-	{ route: "user_settings.add_instagram_account",	roles: ["subscriber","admin"] }
+	{ route: "user_settings",	roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.profile",	roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.change_pass",	roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.instagram_accounts",	roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.add_instagram_account",	roles: ["subscriber", "manager", "admin"] }
 ];
 
 Router.defaultFreeRoute = "";
 Router.defaultPublicRoute = "login";
-//Router.defaultPrivateRoute = "user_settings.instagram_accounts";
-Router.defaultPrivateRoute = "payment";
+Router.defaultPrivateRoute = "user_settings.instagram_accounts";
 
 Router.waitOn(function() { 
 	Meteor.subscribe("current_user_data");
@@ -76,7 +74,6 @@ Router.map(function () {
 	// public routes	
 	this.route("/login", {name: "login", controller: "LoginController"});
 	this.route("/register", {name: "register", controller: "RegisterController"});
-	this.route("/payment", {name: "payment", controller: "PaymentController"});
 	this.route("/verify_email/:verifyEmailToken", {name: "verify_email", controller: "VerifyEmailController"});
 	this.route("/forgot_password", {name: "forgot_password", controller: "ForgotPasswordController"});
 	this.route("/reset_password/:resetPasswordToken", {name: "reset_password", controller: "ResetPasswordController"});
@@ -91,8 +88,10 @@ Router.map(function () {
 	this.route("/user_settings/profile", {name: "user_settings.profile", controller: "UserSettingsProfileController"});
 	this.route("/user_settings/change_pass", {name: "user_settings.change_pass", controller: "UserSettingsChangePassController"});
 	this.route("/user_settings/instagram_accounts", {name: "user_settings.instagram_accounts", controller: "UserSettingsInstagramsController"});
+	this.route("/user_settings/edit_instagram/:instaId", {name: "user_settings.edit_instagram", controller: "UserSettingsEditInstagramController"});
 	this.route("/user_settings/add_instagram_account", {name: "user_settings.add_instagram_account", controller: "UserSettingsAddInstagramController"});
 	this.route("/logout", {name: "logout", controller: "LogoutController"});
+	this.route("/payment", {name: "payment", controller: "PaymentController"});
 
 	// global routes - access to everyone
 	this.route("/", {name: "home", controller: "Home"});

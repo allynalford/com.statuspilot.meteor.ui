@@ -26,15 +26,19 @@ Template.UserSettingsAddInstagram.events({
 	'submit #add_instagram_form' : function(e, t) {
 		e.preventDefault();
 
-		var submit_button = $(t.find(":submit"));
+		let submit_button = $(t.find(":submit"));
 
 		// instagram info
-		var add_instagram = t.find('#add_instagram').value.trim();
-		var add_insta_pass = t.find('#add_insta_pass').value.trim();
-		var confirm_insta_pass = t.find('#confirm_insta_pass').value.trim();
+		let add_instagram = t.find('#add_instagram').value.trim();
+		let add_insta_pass = t.find('#add_insta_pass').value.trim();
+		let confirm_insta_pass = t.find('#confirm_insta_pass').value.trim();
 		// targets
-		var add_target_audience = t.find('#add_target_audience').value.trim();
-		var add_target_hashtags = t.find('#add_target_hashtags').value.trim();
+		let add_target_audience = t.find('#add_target_audience').value.trim();
+		let add_target_hashtags = t.find('#add_target_hashtags').value.trim();
+
+		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
+		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
+		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
 
 		// check instagram pass
 		if(add_insta_pass !== confirm_insta_pass)
@@ -54,7 +58,33 @@ Template.UserSettingsAddInstagram.events({
 			username : add_instagram,
 			password : add_insta_pass,
 			targetAudience : add_target_audience,
-			targetUsers : add_target_hashtags
+			targetUsers : add_target_hashtags,
+			features : {
+				save_user_stats: {
+					start_timestamp: 0,
+					repeat_time: 3600,
+					bot_params: "",
+					active: features_save_user_stats ? true : false
+				},
+				like_hashtag: {
+					start_timestamp: 0,
+					repeat_time: 3600,
+					bot_params: {
+						hashtag: add_target_hashtags.split(','),
+						amount: 8
+					},
+					active: features_like_hashtag ? true : false
+				},
+				like_medias_by_location: {
+					start_timestamp: 0,
+					repeat_time: 3600,
+					bot_params: {
+						locations: [ "Moscow", "Novosibirsk"],
+						amount: 8
+					},
+					active: features_like_medias_by_location ? true : false
+				}
+			}
 		}, function( error, result) {
 			submit_button.button("reset");
 			if ( error ) {

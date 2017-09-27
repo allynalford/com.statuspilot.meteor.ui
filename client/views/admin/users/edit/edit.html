@@ -27,12 +27,24 @@
 				{{infoMessage}}
 			</div>
 			{{/if}}
-			<div class="form-group  field-profile-name">
-				<label for="profile.name">
-					Name
+			<div class="form-group  field-profile-firstName">
+				<label for="profile.firstName">
+					First Name
 				</label>
 				<div class="input-div">
-					<input type="text" name="profile.name" value="{{admin_user.profile.name}}" class="form-control " autofocus="autofocus" required="required" data-type="string">
+					<input type="text" name="profile.firstName" value="{{admin_user.profile.firstName}}" class="form-control " autofocus="autofocus" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-profile-lastName">
+				<label for="profile.lastName">
+					Last Name
+				</label>
+				<div class="input-div">
+					<input type="text" name="profile.lastName" value="{{admin_user.profile.lastName}}" class="form-control " autofocus="autofocus" required="required" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -58,8 +70,8 @@
 				<div class="input-div">
 					<div class="radio">
 						<label>
-							<input type="radio" value="subscriber" name="roles" data-type="array" {{itemIsChecked admin_user.roles "subscriber"}}>
-							Subscriber
+							<input type="radio" value="manager" name="roles" data-type="array" {{itemIsChecked admin_user.roles "manager"}}>
+							Manager
 						</label>
 					</div>
 					<div class="radio">

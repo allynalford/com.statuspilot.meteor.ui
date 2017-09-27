@@ -32,10 +32,6 @@ Template.Payment.onRendered(function() {
 		console.log(err);
 	});
 
-	if(Session.get('isRegistered') == true){
-		Router.go("/user_settings/instagram_accounts");
-	}
-	Session.set('isRegistered', true);
 });
 
 Template.Payment.events({
@@ -79,11 +75,12 @@ Template.Payment.events({
 		
 		submit_button.button("loading");
 		var userId = Meteor.userId();
-		// const inst =  new Mongo.Collection('instagrams');
-		// const myUpdates = inst.find({belongs_to: userId}).find();
 
-		//myUpdates.update(myUpdates[0]._id, { $set: { active: true, paid: true}});
-		Instagrams.update({belongs_to: userId}, {
+		//const Instagrams =  new Mongo.Collection('instagrams');
+		var inst = Instagrams.find({belongs_to:Meteor.userId()}, {});
+		var instId =  inst.id;
+		console.log("id", instId);
+		Instagrams.update({_id: this._id}, {
 		  $set: {
 			  active: true,
 			  paid : true
