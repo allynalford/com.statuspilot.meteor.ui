@@ -19,4 +19,4 @@ node_modules/
 .vscode
 
 # MISC
-.DS_Store
+*.DS_Store
