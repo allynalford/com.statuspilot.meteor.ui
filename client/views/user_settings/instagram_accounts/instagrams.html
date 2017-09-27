@@ -25,14 +25,18 @@
 		<div class="tab-pane text-center active" data-id="{{this._id}}">
 			<h4><i class="fa fa-instagram"></i> <span class="username">{{this.username}}</span></h4>
 			<p>Status: {{#if this.active}} Active {{else}} Inactive {{/if}}</p>
-			
-			{{#unless this.active}}
+
 			<div class="payment">
+			{{#unless this.paid}}
 				<button class="instagram-payment btn btn-success" data-loading-text="Please wait...">
 					<span class="fa fa-shopping-cart"></span> &nbsp; Pay now
 				</button>
-			</div>
+			{{else}}
+				<button class="instagram-payment btn btn-success" disabled>
+					<span class="fa fa-check"></span> &nbsp; Paid
+				</button>
 			{{/unless}}
+			</div>
 
 			<hr>
 

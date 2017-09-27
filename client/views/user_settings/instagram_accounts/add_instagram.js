@@ -51,7 +51,7 @@ Template.UserSettingsAddInstagram.events({
 
 		submit_button.button("loading");
 
-		Instagrams.insert({
+		let data = {
 			belongs_to: Users.findOne()._id,
 			active : false,
 			lastPayDate : null,
@@ -80,7 +80,7 @@ Template.UserSettingsAddInstagram.events({
 					start_timestamp: 0,
 					repeat_time: 21600,
 					bot_params: {
-						locations: [ "Moscow", "Novosibirsk"],
+						locations: [ "Dhaka", "Moscow" ],
 						amount: 8
 					},
 					active: features_like_medias_by_location ? true : false
@@ -94,14 +94,14 @@ Template.UserSettingsAddInstagram.events({
 					active: features_like_timeline ? true : false
 				}
 			}
-		}, function( error, result) {
+		};
+
+		Meteor.call('insertInstagram', data, function( error, result) {
 			submit_button.button("reset");
 			if ( error ) {
-				console.log ( 'Instagram insert error is:' + error );
 				pageSession.set("errorMessage", error);
 			}
 			if ( result ) {
-				console.log ( 'Instagram insert result is:' + result );
 				pageSession.set("errorMessage", "");
 				Router.go("user_settings.instagram_accounts");
 			}

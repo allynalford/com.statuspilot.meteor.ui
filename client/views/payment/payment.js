@@ -113,13 +113,12 @@ function stripeResponseHandler(status, response) {
 
 				// Instagram account update on successful payment
 				let instaId = Session.get("ig-id");
-				Instagrams.update({_id: instaId}, {
-					$set: {
-						active: true,
-						paid: true,
-						lastPayDate: Date.now()
-					}
-				}, function (err, res) {
+				let data = {
+					active: true,
+					paid: true,
+					lastPayDate: Date.now()
+				};
+				Meteor.call('updateInstagram', instaId, data, function (err, res) {
 					if (err) {
 						console.log(err);
 					}

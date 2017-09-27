@@ -32,7 +32,7 @@ Template.UserSettingsEditInstagram.events({
 		pageSession.set("errorMessage", "");
 		pageSession.set("infoMessage", "");
 
-		let this_id = $(e.target).find('.single-wrap').attr('data-id');
+		let instaId = $(e.target).find('.single-wrap').attr('data-id');
 		let username = $(e.target).find('#username').val();
 		let insta_pass = $(e.target).find('#password').val();
 		let target_audience = $(e.target).find('#target-audience').val();
@@ -43,34 +43,36 @@ Template.UserSettingsEditInstagram.events({
 		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
 		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
 		
-		Instagrams.update({_id: this_id}, {
-			$set: {
-				password : insta_pass,
-				targetAudience : target_audience,
-				targetUsers : target_hashtags,
-				features : {
-					save_user_stats: {
-						active: features_save_user_stats ? true : false
+		let data = {
+			password : insta_pass,
+			targetAudience : target_audience,
+			targetUsers : target_hashtags,
+			features : {
+				save_user_stats: {
+					active: features_save_user_stats ? true : false
+				},
+				like_hashtag: {
+					bot_params: {
+						hashtag: target_hashtags.split(',')
 					},
-					like_hashtag: {
-						active: features_like_hashtag ? true : false
-					},
-					like_medias_by_location: {
-						active: features_like_medias_by_location ? true : false
-					},
-					like_timeline: {
-						active: features_like_timeline ? true : false
-					},
-				}
+					active: features_like_hashtag ? true : false
+				},
+				like_medias_by_location: {
+					active: features_like_medias_by_location ? true : false
+				},
+				like_timeline: {
+					active: features_like_timeline ? true : false
+				},
 			}
-		}, function (err, res) {
+		};
+
+		Meteor.call('updateInstagram', instaId, data, function (err, res) {
+			submit_button.button("reset");
 			if (err) {
 				throw err;
 				pageSession.set("errorMessage", err);
 			}
 			if (res) {
-				console.log(res);
-				submit_button.button("reset");
 				pageSession.set("errorMessage", "");
 				pageSession.set("infoMessage", "Instagram profile updated!");
 			}
@@ -82,10 +84,10 @@ Template.UserSettingsEditInstagram.events({
 	'click .delete-instagram-account': function(e) {
 		e.preventDefault();
 
-		let this_id = $(e.target).parents('.single-wrap').attr('data-id');
+		let instaId = $(e.target).parents('.single-wrap').attr('data-id');
 		let username = $(e.target).parents('.single-wrap').find('#username').val();
 
-		Instagrams.remove( {_id: this_id}, function(err, res){
+		Meteor.call('removeInstagram', instaId, function(err, res){
 			if (err) {
 				throw err;
 				pageSession.set("errorMessage", err);

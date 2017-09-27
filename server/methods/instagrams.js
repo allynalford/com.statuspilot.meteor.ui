@@ -1,5 +1,5 @@
 Meteor.methods({
-	"instagramsInsert": function(data) {
+	insertInstagram: function(data) {
 		if(!Instagrams.userCanInsert(this.userId, data)) {
 			throw new Meteor.Error(403, "Forbidden.");
 		}
@@ -7,21 +7,21 @@ Meteor.methods({
 		return Instagrams.insert(data);
 	},
 
-	"instagramsUpdate": function(id, data) {
+	updateInstagram: function(id, data) {
 		var doc = Instagrams.findOne({ _id: id });
 		if(!Instagrams.userCanUpdate(this.userId, doc)) {
 			throw new Meteor.Error(403, "Forbidden.");
 		}
 
-		Instagrams.update({ _id: id }, { $set: data });
+		return Instagrams.update({ _id: id }, { $set: data });
 	},
 
-	"instagramsRemove": function(id) {
+	removeInstagram: function(id) {
 		var doc = Instagrams.findOne({ _id: id });
 		if(!Instagrams.userCanRemove(this.userId, doc)) {
 			throw new Meteor.Error(403, "Forbidden.");
 		}
 
-		Instagrams.remove({ _id: id });
+		return Instagrams.remove({ _id: id });
 	}
 });
