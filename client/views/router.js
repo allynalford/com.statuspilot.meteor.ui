@@ -22,7 +22,9 @@ Router.privateRoutes = [
 	"admin.users.edit",
 	"user_settings",
 	"user_settings.profile",
+	"user_settings.customers",
 	"user_settings.change_pass",
+	"user_settings.edit_instagram",
 	"user_settings.instagram_accounts",
 	"user_settings.add_instagram_account",
 	"logout",
@@ -34,16 +36,20 @@ Router.freeRoutes = [
 ];
 
 Router.roleMap = [
-	{ route: "admin",	roles: ["admin"] },
-	{ route: "admin.users",	roles: ["admin"] },
-	{ route: "admin.users.details",	roles: ["admin"] },
-	{ route: "admin.users.insert",	roles: ["admin"] },
-	{ route: "admin.users.edit",	roles: ["admin"] },
-	{ route: "user_settings",	roles: ["subscriber", "manager", "admin"] },
-	{ route: "user_settings.profile",	roles: ["subscriber", "manager", "admin"] },
-	{ route: "user_settings.change_pass",	roles: ["subscriber", "manager", "admin"] },
-	{ route: "user_settings.instagram_accounts",	roles: ["subscriber", "manager", "admin"] },
-	{ route: "user_settings.add_instagram_account",	roles: ["subscriber", "manager", "admin"] }
+	{ route: "admin", roles: ["admin"] },
+	{ route: "admin.users", roles: ["admin"] },
+	{ route: "admin.users.edit", roles: ["admin"] },
+	{ route: "admin.users.insert", roles: ["admin"] },
+	{ route: "admin.users.details", roles: ["admin"] },
+
+	{ route: "user_settings", roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.profile", roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.customers", roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.change_pass", roles: ["subscriber", "manager", "admin"] },
+
+	{ route: "user_settings.edit_instagram", roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.instagram_accounts", roles: ["subscriber", "manager", "admin"] },
+	{ route: "user_settings.add_instagram_account", roles: ["subscriber", "manager", "admin"] }
 ];
 
 Router.defaultFreeRoute = "";
@@ -86,6 +92,7 @@ Router.map(function () {
 	this.route("/admin/users/edit/:userId", {name: "admin.users.edit", controller: "AdminUsersEditController"});
 	this.route("/user_settings", {name: "user_settings", controller: "UserSettingsController"});
 	this.route("/user_settings/profile", {name: "user_settings.profile", controller: "UserSettingsProfileController"});
+	this.route("/user_settings/customers", {name: "user_settings.customers", controller: "UserSettingsCustomersController"});
 	this.route("/user_settings/change_pass", {name: "user_settings.change_pass", controller: "UserSettingsChangePassController"});
 	this.route("/user_settings/instagram_accounts", {name: "user_settings.instagram_accounts", controller: "UserSettingsInstagramsController"});
 	this.route("/user_settings/edit_instagram/:instaId", {name: "user_settings.edit_instagram", controller: "UserSettingsEditInstagramController"});
