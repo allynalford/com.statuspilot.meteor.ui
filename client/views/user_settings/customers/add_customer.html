@@ -1,0 +1,54 @@
+<template name="UserSettingsAddCustomer">
+	<h2>
+		Add new Customer account
+	</h2>
+	{{#if errorMessage}}
+	<div class="alert alert-warning">
+		{{errorMessage}}
+	</div>
+	{{/if}}
+
+	{{#if infoMessage}}
+	<div class="alert alert-success">
+		{{{infoMessage}}}
+	</div>
+	{{/if}}
+
+
+	{{> AddCustomerAccount}}
+
+</template>
+
+<template name="AddCustomerAccount">
+	<form id="customer_form" role="form">
+		<h4><i class="fa fa-customer"></i> Enter Customer account info below</h4>
+
+		<div class="form-group">
+			<input id="customer_name" type="text" class="form-control" placeholder="Customer Name">
+		</div>
+		<div class="form-group">
+			<input id="customer_email" type="email" class="form-control" placeholder="Customer Email" required>
+		</div>
+		<div class="form-group">
+			<input id="confirm_phone" type="phone" class="form-control" placeholder="Confirm Phone No.">
+		</div>
+		<br>
+		<div class="form-group">
+			<input id="customer_city" type="text" class="form-control" placeholder="Customer City" required>
+		</div>
+		<div class="form-group">
+			<input id="customer_state" type="text" class="form-control" placeholder="Customer State" required>
+		</div>
+		<div class="form-group">
+			<input id="customer_company" type="text" class="form-control" placeholder="Customer's Company">
+		</div>
+
+		<div class="form-group">
+			<button type="submit" class="btn btn-success" data-loading-text="Please wait...">Add new customer</button>
+		</div>
+	</form>
+
+	<br>
+	<a class="btn btn-theme" href="{{pathFor 'user_settings.customers'}}">Back to customer list</a>
+	
+</template>
