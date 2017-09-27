@@ -29,71 +29,22 @@ Template.UserSettingsAddCustomer.events({
 		let submit_button = $(t.find(":submit"));
 
 		// customer info
-		let add_customer = t.find('#add_customer').value.trim();
-		let add_insta_pass = t.find('#add_insta_pass').value.trim();
-		let confirm_insta_pass = t.find('#confirm_insta_pass').value.trim();
-		// targets
-		let add_target_audience = t.find('#add_target_audience').value.trim();
-		let add_target_hashtags = t.find('#add_target_hashtags').value.trim();
-
-		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
-		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
-		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
-		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
-
-		// check customer pass
-		if(add_insta_pass !== confirm_insta_pass)
-		{
-			pageSession.set("errorMessage", "Customer passwords don't match.");
-			t.find('#confirm_insta_pass').focus();
-			return false;
-		}
+		let customer_name = t.find('#customer_name').value.trim();
+		let customer_email = t.find('#customer_email').value.trim();
+		let customer_phone = t.find('#customer_phone').value.trim();
+		let customer_city = t.find('#customer_city').value.trim();
+		let customer_state = t.find('#customer_state').value.trim();
+		let customer_company = t.find('#customer_company').value.trim();
 
 		submit_button.button("loading");
 
 		let data = {
-			belongs_to: Users.findOne()._id,
-			active : false,
-			lastPayDate : null,
-			paid : false,
-			username : add_customer,
-			password : add_insta_pass,
-			targetAudience : add_target_audience,
-			targetUsers : add_target_hashtags,
-			features : {
-				save_user_stats: {
-					start_timestamp: 0,
-					repeat_time: 3600,
-					bot_params: "",
-					active: features_save_user_stats ? true : false
-				},
-				like_hashtag: {
-					start_timestamp: 0,
-					repeat_time: 21600,
-					bot_params: {
-						hashtag: add_target_hashtags.split(','),
-						amount: 8
-					},
-					active: features_like_hashtag ? true : false
-				},
-				like_medias_by_location: {
-					start_timestamp: 0,
-					repeat_time: 21600,
-					bot_params: {
-						locations: [ "Dhaka", "Moscow" ],
-						amount: 8
-					},
-					active: features_like_medias_by_location ? true : false
-				},
-				like_timeline: {
-					start_timestamp: 0,
-					repeat_time: 21600,
-					bot_params: {
-						amount: 8
-					},
-					active: features_like_timeline ? true : false
-				}
-			}
+			name: customer_name,
+			email: customer_email,
+			phone: customer_phone,
+			city: customer_city,
+			state: customer_state,
+			company: customer_company
 		};
 
 		Meteor.call('insertCustomer', data, function( error, result) {

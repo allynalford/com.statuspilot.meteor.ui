@@ -20,7 +20,7 @@ this.UserSettingsCustomersController = RouteController.extend({
 		
 
 		var subs = [
-			// Meteor.subscribe("customers")
+			Meteor.subscribe("customers")
 		];
 		var ready = true;
 		_.each(subs, function(sub) {
