@@ -78,9 +78,8 @@ Template.Payment.events({
 
 		//const Instagrams =  new Mongo.Collection('instagrams');
 		var inst = Instagrams.find({belongs_to:Meteor.userId()}, {});
-		var instId =  inst.id;
-		console.log("id", instId);
-		Instagrams.update({_id: this._id}, {
+		var instaId = Session.get("ig-id");
+		Instagrams.update({_id: instaId}, {
 		  $set: {
 			  active: true,
 			  paid : true
