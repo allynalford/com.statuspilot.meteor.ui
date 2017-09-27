@@ -19,6 +19,7 @@ Template.UserSettingsInstagrams.onRendered(function() {
 		globalOnRendered();
 		$("input[autofocus]").focus();
 	});
+
 });
 
 Template.UserSettingsInstagrams.events({
@@ -61,7 +62,6 @@ Template.UserSettingsInstagrams.events({
 
 	'click .instagram-payment': function(e) {
 		let this_id = $(e.target).parents('.tab-pane').attr('data-id');
-		console.log('clicked on payment button');
 		Session.set("ig-id", this_id);
 		Router.go("payment");
 	}
