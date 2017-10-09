@@ -1,5 +1,5 @@
 FROM node:6.10
-MAINTAINER Anisuzzaman Khan <aniskhan001@gmail.com>
+LABEL maintainer="Anisuzzaman Khan <aniskhan001@gmail.com>"
 
 RUN curl https://install.meteor.com/ | sh
 RUN npm install -g forever

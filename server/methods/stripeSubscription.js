@@ -1,4 +1,4 @@
-let stripe = require("stripe")("sk_test_Xlvot5lSlBLb313mOMpaMrjH");
+let stripe = require("stripe")("sk_live_Ye1JSgUiw1LRptPPkj05k1ex");
 
 Meteor.startup(() => {
 
