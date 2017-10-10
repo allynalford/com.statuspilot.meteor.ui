@@ -45,6 +45,8 @@ Router.roleMap = [
 	{ route: "admin.users.details", roles: ["admin"] },
 
 	{ route: "data_entry", roles: ["manager", "admin"] },
+
+	
 	{ route: "user_settings", roles: ["subscriber", "manager", "admin"] },
 	{ route: "user_settings.profile", roles: ["subscriber", "manager", "admin"] },
 	{ route: "user_settings.customers", roles: ["subscriber", "manager", "admin"] },
