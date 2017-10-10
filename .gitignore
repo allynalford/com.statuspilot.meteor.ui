@@ -20,3 +20,5 @@ node_modules/
 
 # MISC
 *.DS_Store
+client/views/data_entry/billing/billing_controller.js
+client/views/data_entry/billing/billing.html

@@ -29,11 +29,12 @@ Router.privateRoutes = [
 	"user_settings.instagram_accounts",
 	"user_settings.add_instagram_account",
 	"logout",
-	"payment"
+	"payment",
+	"data_entry.billing"
 ];
 
 Router.freeRoutes = [
-	
+
 ];
 
 Router.roleMap = [
@@ -43,6 +44,7 @@ Router.roleMap = [
 	{ route: "admin.users.insert", roles: ["admin"] },
 	{ route: "admin.users.details", roles: ["admin"] },
 
+	{ route: "data_entry", roles: ["manager", "admin"] },
 	{ route: "user_settings", roles: ["subscriber", "manager", "admin"] },
 	{ route: "user_settings.profile", roles: ["subscriber", "manager", "admin"] },
 	{ route: "user_settings.customers", roles: ["subscriber", "manager", "admin"] },
@@ -58,7 +60,7 @@ Router.defaultFreeRoute = "";
 Router.defaultPublicRoute = "login";
 Router.defaultPrivateRoute = "user_settings.instagram_accounts";
 
-Router.waitOn(function() { 
+Router.waitOn(function() {
 	Meteor.subscribe("current_user_data");
 });
 
@@ -79,7 +81,7 @@ Router.onBeforeAction(Router.ensureGranted, {only: Router.freeRoutes}); // yes, 
 
 Router.map(function () {
 
-	// public routes	
+	// public routes
 	this.route("/login", {name: "login", controller: "LoginController"});
 	this.route("/register", {name: "register", controller: "RegisterController"});
 	this.route("/verify_email/:verifyEmailToken", {name: "verify_email", controller: "VerifyEmailController"});
@@ -102,7 +104,7 @@ Router.map(function () {
 	this.route("/user_settings/add_instagram_account", {name: "user_settings.add_instagram_account", controller: "UserSettingsAddInstagramController"});
 	this.route("/logout", {name: "logout", controller: "LogoutController"});
 	this.route("/payment", {name: "payment", controller: "PaymentController"});
-
+	this.route("/data_entry/billing", {name: "data_entry.billing", controller: "BillingController"});
 	// global routes - access to everyone
 	this.route("/", {name: "home", controller: "Home"});
 	this.route("/contact", {name: "contact", controller: "ContactController"});
