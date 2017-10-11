@@ -40,11 +40,16 @@ Template.UserSettingsAddInstagram.events({
 		let confirm_insta_pass = t.find('#confirm_insta_pass').value.trim();
 		// targets
 		let add_target_audience = t.find('#add_target_audience').value.trim();
-		let add_target_hashtags = t.find('#add_target_hashtags').value.trim();
 
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
+		
 		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
+		let hashtags = t.find('#hashtags').value.trim();
+		let hashtags_amount = $(e.target).find('#hashtags_amount').val();
+
 		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
+		let like_media_location = $(e.target).find('#like_media_location').val();
+		let like_media_location_amount = $(e.target).find('#like_media_location_amount').val();
 
 		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
 		let like_timeline_amount = $(e.target).find('#like_timeline_amount').val();
@@ -91,20 +96,19 @@ Template.UserSettingsAddInstagram.events({
 			username : add_instagram,
 			password : add_insta_pass,
 			targetAudience : add_target_audience,
-			targetUsers : add_target_hashtags,
 			features : {
 				save_user_stats: {
 					start_timestamp: 0,
 					repeat_time: 3600,
-					bot_params: "",
+					bot_params: {},
 					active: features_save_user_stats ? true : false
 				},
 				like_hashtag: {
 					start_timestamp: 0,
 					repeat_time: 21600,
 					bot_params: {
-						hashtag: add_target_hashtags.split(','),
-						amount: 8
+						hashtag: hashtags.split(','),
+						amount: hashtags_amount
 					},
 					active: features_like_hashtag ? true : false
 				},
@@ -112,8 +116,8 @@ Template.UserSettingsAddInstagram.events({
 					start_timestamp: 0,
 					repeat_time: 21600,
 					bot_params: {
-						locations: [ "Dhaka", "Moscow" ],
-						amount: 8
+						locations: like_media_location,
+						amount: like_media_location_amount
 					},
 					active: features_like_medias_by_location ? true : false
 				},
