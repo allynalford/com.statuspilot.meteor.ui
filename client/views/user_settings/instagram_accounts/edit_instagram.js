@@ -98,37 +98,51 @@ Template.UserSettingsEditInstagram.events({
 					active: features_like_medias_by_location ? true : false
 				},
 				like_timeline: {
-					amount: like_timeline_amount,
+					bot_params: {
+						amount: like_timeline_amount
+					},
 					active: features_like_timeline ? true : false
 				},
 				follow_user_followers: {
-					users: follow_users.split(','),
-					amount: follow_users_amount,
+					bot_params: {
+						users: follow_users.split(','),
+						amount: follow_users_amount
+					},
 					active: features_follow_user_followers ? true : false
 				},
 				follow_by_location: {
-					locations: follow_locations.split(','),
-					amount: follow_locations_amount,
+					bot_params: {
+						locations: follow_locations.split(','),
+						amount: follow_locations_amount
+					},
 					active: features_follow_by_location ? true : false
 				},
 				follow_likers_by_location: {
-					locations: follow_location_likers.split(','),
-					amount: follow_location_likers_amount,
+					bot_params: {
+						locations: follow_location_likers.split(','),
+						amount: follow_location_likers_amount
+					},
 					active: features_follow_likers_by_location ? true : false
 				},
 				like_likers_by_location: {
-					locations: like_location_likers.split(','),
-					amount: like_location_likers_amount,
+					bot_params: {
+						locations: like_location_likers.split(','),
+						amount: like_location_likers_amount
+					},
 					active: features_like_likers_by_location ? true : false
 				},
 				direct_message_followers: {
-					locations: dm_followers.split(','),
-					amount: dm_followers_amount,
+					bot_params: {
+						locations: dm_followers.split(','),
+						amount: dm_followers_amount
+					},
 					active: features_direct_message_followers ? true : false
 				},
 				direct_message_new_followers: {
-					locations: dm_new_followers.split(','),
-					amount: dm_new_followers_amount,
+					bot_params: {
+						locations: dm_new_followers.split(','),
+						amount: dm_new_followers_amount
+					},
 					active: features_direct_message_new_followers ? true : false
 				}
 			}
