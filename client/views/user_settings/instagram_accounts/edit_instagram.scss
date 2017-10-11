@@ -11,9 +11,19 @@
             .params {
                 div {
                     margin: 10px;
-        
+
+                    $label-width: 65px;
+
+                    label {
+                        display: inline-block;
+                        width: $label-width;
+                        font-weight: 600;
+                    }
+
                     input {
                         margin-bottom: 10px;
+                        display: inline-block;
+                        width: calc(100% - #{$label-width} - 5px);
                     }
                 }
             }

@@ -125,7 +125,8 @@
 						<input type="checkbox" {{checkedIf instagram_account.features.like_timeline.active}} id="like_timeline" value="like_timeline" data-onstyle="info">
 						<strong class="feature-label">Like Timeline</strong>
 						<div class="col-md-12 params">
-							<div class="col-md-4">
+							<div class="col-md-6">
+								<label for="like_timeline_amount">Amount:</label>
 								<input type="number" class="form-control" id="like_timeline_amount" placeholder=" Your amount here" value="{{instagram_account.features.like_timeline.amount}}">
 							</div>
 						</div>
@@ -134,8 +135,10 @@
 						<input type="checkbox" {{checkedIf instagram_account.features.follow_user_followers.active}} id="follow_user_followers" value="follow_user_followers" data-onstyle="info">
 						<strong class="feature-label">Follow User Followers</strong>
 						<div class="col-md-12 params">
-							<div class="col-md-4">
+							<div class="col-md-6">
+								<label for="follow_users">Users:</label>
 								<input type="text" class="form-control" id="follow_users" placeholder="Enter user name separated by commas" value="{{instagram_account.features.follow_user_followers.users}}">
+								<label for="follow_users_amount">Amount:</label>
 								<input type="number" class="form-control" id="follow_users_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_user_followers.amount}}">
 							</div>
 						</div>
@@ -144,8 +147,10 @@
 						<input type="checkbox" {{checkedIf instagram_account.features.follow_by_location.active}} id="follow_by_location" value="follow_by_location" data-onstyle="info">
 						<strong class="feature-label">Follow By Location</strong>
 						<div class="col-md-12 params">
-							<div class="col-md-4">
-								<input type="text" class="form-control" id="follow_locations" placeholder="Enter user name separated by commas" value="{{instagram_account.features.follow_by_location.locations}}">
+							<div class="col-md-6">
+								<label for="follow_locations">Locations:</label>
+								<input type="text" class="form-control" id="follow_locations" placeholder="Enter location name separated by commas" value="{{instagram_account.features.follow_by_location.locations}}">
+								<label for="follow_locations_amount">Amount:</label>
 								<input type="number" class="form-control" id="follow_locations_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_by_location.amount}}">
 							</div>
 						</div>
@@ -154,8 +159,10 @@
 						<input type="checkbox" {{checkedIf instagram_account.features.follow_likers_by_location.active}} id="follow_likers_by_location" value="follow_likers_by_location" data-onstyle="info">
 						<strong class="feature-label">Follow Likers By Location</strong>
 						<div class="col-md-12 params">
-							<div class="col-md-4">
-								<input type="text" class="form-control" id="follow_location_likers" placeholder="Enter user name separated by commas" value="{{instagram_account.features.follow_likers_by_location.locations}}">
+							<div class="col-md-6">
+								<label for="follow_location_likers">Locations:</label>
+								<input type="text" class="form-control" id="follow_location_likers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.follow_likers_by_location.locations}}">
+								<label for="follow_location_likers_amount">Amount:</label>
 								<input type="number" class="form-control" id="follow_location_likers_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_likers_by_location.amount}}">
 							</div>
 						</div>
@@ -164,8 +171,10 @@
 						<input type="checkbox" {{checkedIf instagram_account.features.like_likers_by_location.active}} id="like_likers_by_location" value="like_likers_by_location" data-onstyle="info">
 						<strong class="feature-label">Like Likers By Location</strong>
 						<div class="col-md-12 params">
-							<div class="col-md-4">
-								<input type="text" class="form-control" id="like_location_likers" placeholder="Enter user name separated by commas" value="{{instagram_account.features.like_likers_by_location.locations}}">
+							<div class="col-md-6">
+								<label for="like_location_likers">Locations:</label>
+								<input type="text" class="form-control" id="like_location_likers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.like_likers_by_location.locations}}">
+								<label for="like_location_likers_amount">Amount:</label>
 								<input type="number" class="form-control" id="like_location_likers_amount" placeholder="Your amount here" value="{{instagram_account.features.like_likers_by_location.amount}}">
 							</div>
 						</div>
@@ -174,8 +183,10 @@
 						<input type="checkbox" {{checkedIf instagram_account.features.direct_message_followers.active}} id="direct_message_followers" value="direct_message_followers" data-onstyle="info">
 						<strong class="feature-label">Direct Message Followers</strong>
 						<div class="col-md-12 params">
-							<div class="col-md-4">
-								<input type="text" class="form-control" id="dm_followers" placeholder="Enter user name separated by commas" value="{{instagram_account.features.direct_message_followers.locations}}">
+							<div class="col-md-6">
+								<label for="dm_followers">Locations:</label>
+								<input type="text" class="form-control" id="dm_followers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.direct_message_followers.locations}}">
+								<label for="dm_followers_amount">Amount:</label>
 								<input type="number" class="form-control" id="dm_followers_amount" placeholder="Your amount here" value="{{instagram_account.features.direct_message_followers.amount}}">
 							</div>
 						</div>
@@ -184,8 +195,10 @@
 						<input type="checkbox" {{checkedIf instagram_account.features.direct_message_new_followers.active}} id="direct_message_new_followers" value="direct_message_new_followers" data-onstyle="info">
 						<strong class="feature-label">Direct Message New Followers</strong>
 						<div class="col-md-12 params">
-							<div class="col-md-4">
-								<input type="text" class="form-control" id="dm_new_followers" placeholder="Enter user name separated by commas" value="{{instagram_account.features.direct_message_new_followers.locations}}">
+							<div class="col-md-6">
+								<label for="dm_new_followers">Locations: </label>
+								<input type="text" class="form-control" id="dm_new_followers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.direct_message_new_followers.locations}}">
+								<label for="dm_new_followers_amount">Amount:: </label>
 								<input type="number" class="form-control" id="dm_new_followers_amount" placeholder="Your amount here" value="{{instagram_account.features.direct_message_new_followers.amount}}">
 							</div>
 						</div>
