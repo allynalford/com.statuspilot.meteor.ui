@@ -47,11 +47,16 @@ Template.UserSettingsEditInstagram.events({
 		let username = $(e.target).find('#username').val();
 		let insta_pass = $(e.target).find('#password').val();
 		let target_audience = $(e.target).find('#target-audience').val();
-		let target_hashtags = $(e.target).find('#target-users').val();
 
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
+
 		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
+		let hashtags = t.find('#hashtags').value.trim();
+		let hashtags_amount = $(e.target).find('#hashtags_amount').val();
+
 		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
+		let like_media_location = $(e.target).find('#like_media_location').val();
+		let like_media_location_amount = $(e.target).find('#like_media_location_amount').val();
 
 		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
 		let like_timeline_amount = $(e.target).find('#like_timeline_amount').val();
@@ -83,18 +88,22 @@ Template.UserSettingsEditInstagram.events({
 		let data = {
 			password : insta_pass,
 			targetAudience : target_audience,
-			targetUsers : target_hashtags,
 			features : {
 				save_user_stats: {
 					active: features_save_user_stats ? true : false
 				},
 				like_hashtag: {
 					bot_params: {
-						hashtag: target_hashtags.split(',')
+						hashtag: hashtags.split(','),
+						amount: hashtags_amount
 					},
 					active: features_like_hashtag ? true : false
 				},
 				like_medias_by_location: {
+					bot_params: {
+						locations: like_media_location,
+						amount: like_media_location_amount
+					},
 					active: features_like_medias_by_location ? true : false
 				},
 				like_timeline: {

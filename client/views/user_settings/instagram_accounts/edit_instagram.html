@@ -114,12 +114,28 @@
 						<strong class="feature-label">Save User Stats</strong>
 					</div>
 					<div class="ig-account-feature">
-						<input type="checkbox" {{checkedIf instagram_account.features.like_hashtag.active}} id="like_hashtag" value="like_hashtag" data-onstyle="info">
+						<input type="checkbox" id="like_hashtag" value="like_hashtag" data-onstyle="info">
 						<strong class="feature-label">Like Hashtag</strong>
+						<div class="col-md-12 params">
+							<div class="col-md-6">
+								<label for="hashtags">Hashtags:</label>
+								<input type="text" class="form-control" id="hashtags" placeholder="Enter hashtags separated by commas" value="{{instagram_account.features.like_hashtag.bot_params.locations}}">
+								<label for="hashtags_amount">Amount:</label>
+								<input type="number" class="form-control" id="hashtags_amount" placeholder="Your amount here" value="{{instagram_account.features.like_hashtag.bot_params.amount}}">
+							</div>
+						</div>
 					</div>
 					<div class="ig-account-feature">
-						<input type="checkbox" {{checkedIf instagram_account.features.like_medias_by_location.active}} id="like_medias_by_location" value="like_medias_by_location" data-onstyle="info">
+						<input type="checkbox" id="like_medias_by_location" value="like_medias_by_location" data-onstyle="info">
 						<strong class="feature-label">Like Medias by Location</strong>
+						<div class="col-md-12 params">
+							<div class="col-md-6">
+								<label for="like_media_location">Locations:</label>
+								<input type="text" class="form-control" id="like_media_location" placeholder="Enter location name separated by commas" value="{{instagram_account.features.like_medias_by_location.bot_params.locations}}">
+								<label for="like_media_location_amount">Amount:</label>
+								<input type="number" class="form-control" id="like_media_location_amount" placeholder="Your amount here" value="{{instagram_account.features.like_medias_by_location.bot_params.amount}}">
+							</div>
+						</div>
 					</div>
 					<div class="ig-account-feature">
 						<input type="checkbox" {{checkedIf instagram_account.features.like_timeline.active}} id="like_timeline" value="like_timeline" data-onstyle="info">
