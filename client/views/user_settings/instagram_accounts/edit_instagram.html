@@ -109,14 +109,22 @@
 					<h3>Features</h3>
 				</label>
 				<div class="input-div">
-					<input type="checkbox" {{checkedIf instagram_account.features.save_user_stats.active}} name="features" id="save_user_stats" value="save_user_stats">
-					<label for="save_user_stats">Save User Stats</label> <br>
-					<input type="checkbox" {{checkedIf instagram_account.features.like_hashtag.active}} name="features" id="like_hashtag" value="like_hashtag">
-					<label for="like_hashtag">Like Hashtag</label> <br>
-					<input type="checkbox" {{checkedIf instagram_account.features.like_medias_by_location.active}} name="features" id="like_medias_by_location" value="like_medias_by_location">
-					<label for="like_medias_by_location">Like Medias by Location</label> <br>
-					<input type="checkbox" {{checkedIf instagram_account.features.like_timeline.active}} name="features" id="like_timeline" value="like_timeline">
-					<label for="like_timeline">Like Timeline</label> <br>
+					<div class="ig-account-feature">
+						<input type="checkbox" {{checkedIf instagram_account.features.save_user_stats.active}} id="save_user_stats"  value="save_user_stats" data-onstyle="info">
+						<strong>Save User Stats</strong>
+					</div>
+					<div class="ig-account-feature">
+						<input type="checkbox" {{checkedIf instagram_account.features.like_hashtag.active}} id="like_hashtag" value="like_hashtag" data-onstyle="info">
+						<strong>Like Hashtag</strong>
+					</div>
+					<div class="ig-account-feature">
+						<input type="checkbox" {{checkedIf instagram_account.features.like_medias_by_location.active}} id="like_medias_by_location" value="like_medias_by_location" data-onstyle="info">
+						<strong>Like Medias by Location</strong>
+					</div>
+					<div class="ig-account-feature">
+						<input type="checkbox" {{checkedIf instagram_account.features.like_timeline.active}} id="like_timeline" value="like_timeline" data-onstyle="info">
+						<strong>Like Timeline</strong>
+					</div>
 				</div>
 			</div>
 

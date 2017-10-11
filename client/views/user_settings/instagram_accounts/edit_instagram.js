@@ -20,6 +20,8 @@ Template.UserSettingsEditInstagram.onRendered(function() {
 		$("input[autofocus]").focus();
 	});
 
+	$('.ig-account-feature input').bootstrapToggle();
+
 });
 
 Template.UserSettingsEditInstagram.events({
