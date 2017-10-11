@@ -114,19 +114,19 @@
 						<strong class="feature-label">Save User Stats</strong>
 					</div>
 					<div class="ig-account-feature">
-						<input type="checkbox" id="like_hashtag" value="like_hashtag" data-onstyle="info">
+						<input type="checkbox" {{checkedIf instagram_account.features.like_hashtag.active}} id="like_hashtag" value="like_hashtag" data-onstyle="info">
 						<strong class="feature-label">Like Hashtag</strong>
 						<div class="col-md-12 params">
 							<div class="col-md-6">
 								<label for="hashtags">Hashtags:</label>
-								<input type="text" class="form-control" id="hashtags" placeholder="Enter hashtags separated by commas" value="{{instagram_account.features.like_hashtag.bot_params.locations}}">
+								<input type="text" class="form-control" id="hashtags" placeholder="Enter hashtags separated by commas" value="{{instagram_account.features.like_hashtag.bot_params.hashtags}}">
 								<label for="hashtags_amount">Amount:</label>
 								<input type="number" class="form-control" id="hashtags_amount" placeholder="Your amount here" value="{{instagram_account.features.like_hashtag.bot_params.amount}}">
 							</div>
 						</div>
 					</div>
 					<div class="ig-account-feature">
-						<input type="checkbox" id="like_medias_by_location" value="like_medias_by_location" data-onstyle="info">
+						<input type="checkbox" {{checkedIf instagram_account.features.like_medias_by_location.active}} id="like_medias_by_location" value="like_medias_by_location" data-onstyle="info">
 						<strong class="feature-label">Like Medias by Location</strong>
 						<div class="col-md-12 params">
 							<div class="col-md-6">
@@ -220,7 +220,7 @@
 						</div>
 					</div>
 					<div class="ig-account-feature">
-						<input type="checkbox" id="get_user_followers"  value="get_user_followers" data-onstyle="info">
+						<input type="checkbox" {{checkedIf instagram_account.features.get_user_followers.active}} id="get_user_followers"  value="get_user_followers" data-onstyle="info">
 						<strong class="feature-label">Get User Followers</strong>
 					</div>
 				</div>

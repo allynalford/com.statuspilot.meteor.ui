@@ -26,8 +26,10 @@ Template.UserSettingsEditInstagram.onRendered(function() {
 	$('.ig-account-feature input[type="checkbox"]').each(function(e) {
 		if (this.checked) {
 			$(this).parent().siblings('.params').children().show();
+			$(this).parent().siblings('.params').children().find('input').attr('required', true);
 		} else {
 			$(this).parent().siblings('.params').children().hide();
+			$(this).parent().siblings('.params').children().find('input').removeAttr('required');
 		}
 	});
 
@@ -96,7 +98,7 @@ Template.UserSettingsEditInstagram.events({
 				},
 				like_hashtag: {
 					bot_params: {
-						hashtag: hashtags.split(','),
+						hashtags: hashtags.split(','),
 						amount: hashtags_amount
 					},
 					active: features_like_hashtag ? true : false
@@ -198,8 +200,10 @@ Template.UserSettingsEditInstagram.events({
 	'change .ig-account-feature input[type="checkbox"]': function(e) {
 		if (e.target.checked) {
 			$(e.target).parent().siblings('.params').children().show('fast');
+			$(e.target).parent().siblings('.params').children().find('input').attr('required', true);
 		} else {
 			$(e.target).parent().siblings('.params').children().hide('fast');
+			$(e.target).parent().siblings('.params').children().find('input').removeAttr('required');
 		}
 	}
 

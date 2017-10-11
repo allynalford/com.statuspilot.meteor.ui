@@ -109,7 +109,7 @@ Template.UserSettingsAddInstagram.events({
 					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
-						hashtag: hashtags.split(','),
+						hashtags: hashtags.split(','),
 						amount: hashtags_amount
 					},
 					active: features_like_hashtag ? true : false
@@ -213,8 +213,10 @@ Template.UserSettingsAddInstagram.events({
 	'change .ig-account-feature input[type="checkbox"]': function(e) {
 		if (e.target.checked) {
 			$(e.target).parent().siblings('.params').children().show('fast');
+			$(e.target).parent().siblings('.params').children().find('input').attr('required', true);
 		} else {
 			$(e.target).parent().siblings('.params').children().hide('fast');
+			$(e.target).parent().siblings('.params').children().find('input').removeAttr('required');
 		}
 	}
 
