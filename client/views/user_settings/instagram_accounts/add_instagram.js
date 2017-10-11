@@ -78,6 +78,8 @@ Template.UserSettingsAddInstagram.events({
 		let dm_new_followers = $(e.target).find('#dm_new_followers').val();
 		let dm_new_followers_amount = $(e.target).find('#dm_new_followers_amount').val();
 
+		let features_get_user_followers = $(e.target).find('#get_user_followers').prop('checked');
+		
 		// check instagram pass
 		if(add_insta_pass !== confirm_insta_pass)
 		{
@@ -182,6 +184,12 @@ Template.UserSettingsAddInstagram.events({
 						amount: dm_new_followers_amount
 					},
 					active: features_direct_message_new_followers ? true : false
+				},
+				get_user_followers: {
+					start_timestamp: 0,
+					repeat_time: 3600,
+					bot_params: {},
+					active: features_get_user_followers ? true : false
 				}
 			}
 		};
