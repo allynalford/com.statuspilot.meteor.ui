@@ -20,7 +20,7 @@ Template.UserSettingsEditInstagram.onRendered(function() {
 		$("input[autofocus]").focus();
 	});
 
-	$('.ig-account-feature input').bootstrapToggle();
+	$('.ig-account-feature input[type="checkbox"]').bootstrapToggle();
 
 });
 
@@ -99,6 +99,14 @@ Template.UserSettingsEditInstagram.events({
 				pageSession.set("infoMessage", "Instagram profile <strong>" + username + "</strong> removed");
 			}
 		});
+	},
+
+	'change .ig-account-feature input[type="checkbox"]': function(e) {
+		if (e.target.checked) {
+			$(e.target).parent().siblings('.params').children().show('fast');
+		} else {
+			$(e.target).parent().siblings('.params').children().hide('fast');
+		}
 	}
 
 });

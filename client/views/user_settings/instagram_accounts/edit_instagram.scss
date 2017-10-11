@@ -1,7 +1,17 @@
 .ig-account-feature {
     margin-bottom: 10px;
 
-    strong {
+    strong.feature-label {
         padding-left: 10px;
     }
+
+    .params {
+        div {
+            margin: 10px;            
+        }
+    }
+}
+
+.submit-div {
+    margin-top: 80px;
 }
