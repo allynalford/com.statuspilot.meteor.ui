@@ -20,7 +20,16 @@ Template.UserSettingsEditInstagram.onRendered(function() {
 		$("input[autofocus]").focus();
 	});
 
+	// Init feature toggle and field to frontend
 	$('.ig-account-feature input[type="checkbox"]').bootstrapToggle();
+
+	$('.ig-account-feature input[type="checkbox"]').each(function(e) {
+		if (this.checked) {
+			$(this).parent().siblings('.params').children().show();
+		} else {
+			$(this).parent().siblings('.params').children().hide();
+		}
+	});
 
 });
 
@@ -43,8 +52,10 @@ Template.UserSettingsEditInstagram.events({
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
 		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
 		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
+
 		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
-		
+		let like_timeline_amount = $(e.target).find('#like_timeline_amount').val();
+
 		let data = {
 			password : insta_pass,
 			targetAudience : target_audience,
@@ -63,6 +74,7 @@ Template.UserSettingsEditInstagram.events({
 					active: features_like_medias_by_location ? true : false
 				},
 				like_timeline: {
+					amount: like_timeline_amount,
 					active: features_like_timeline ? true : false
 				},
 			}
