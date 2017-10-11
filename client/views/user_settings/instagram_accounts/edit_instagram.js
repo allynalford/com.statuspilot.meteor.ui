@@ -56,6 +56,10 @@ Template.UserSettingsEditInstagram.events({
 		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
 		let like_timeline_amount = $(e.target).find('#like_timeline_amount').val();
 
+		let features_follow_user_followers = $(e.target).find('#follow_user_followers').prop('checked');
+		let follow_users = $(e.target).find('#follow_users').val();
+		let follow_users_amount = $(e.target).find('#follow_users_amount').val();
+
 		let data = {
 			password : insta_pass,
 			targetAudience : target_audience,
@@ -77,6 +81,11 @@ Template.UserSettingsEditInstagram.events({
 					amount: like_timeline_amount,
 					active: features_like_timeline ? true : false
 				},
+				follow_user_followers: {
+					users: follow_users.split(','),
+					amount: follow_users_amount,
+					active: features_follow_user_followers ? true : false
+				}
 			}
 		};
 

@@ -1,17 +1,26 @@
-.ig-account-feature {
-    margin-bottom: 10px;
+.instagrams_form {
+    .single-wrap {
 
-    strong.feature-label {
-        padding-left: 10px;
-    }
+        .ig-account-feature {
+            margin-bottom: 10px;
+        
+            strong.feature-label {
+                padding-left: 10px;
+            }
+        
+            .params {
+                div {
+                    margin: 10px;
+        
+                    input {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
 
-    .params {
-        div {
-            margin: 10px;            
+        >.form-group:last-child {
+            margin-top: 30px;
         }
     }
-}
-
-.submit-div {
-    margin-top: 80px;
 }

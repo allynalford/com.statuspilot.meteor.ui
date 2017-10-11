@@ -111,15 +111,15 @@
 				<div class="input-div">
 					<div class="ig-account-feature">
 						<input type="checkbox" {{checkedIf instagram_account.features.save_user_stats.active}} id="save_user_stats"  value="save_user_stats" data-onstyle="info">
-						<strong>Save User Stats</strong>
+						<strong class="feature-label">Save User Stats</strong>
 					</div>
 					<div class="ig-account-feature">
 						<input type="checkbox" {{checkedIf instagram_account.features.like_hashtag.active}} id="like_hashtag" value="like_hashtag" data-onstyle="info">
-						<strong>Like Hashtag</strong>
+						<strong class="feature-label">Like Hashtag</strong>
 					</div>
 					<div class="ig-account-feature">
 						<input type="checkbox" {{checkedIf instagram_account.features.like_medias_by_location.active}} id="like_medias_by_location" value="like_medias_by_location" data-onstyle="info">
-						<strong>Like Medias by Location</strong>
+						<strong class="feature-label">Like Medias by Location</strong>
 					</div>
 					<div class="ig-account-feature">
 						<input type="checkbox" {{checkedIf instagram_account.features.like_timeline.active}} id="like_timeline" value="like_timeline" data-onstyle="info">
@@ -127,6 +127,16 @@
 						<div class="col-md-12 params">
 							<div class="col-md-4">
 								<input type="number" class="form-control" id="like_timeline_amount" placeholder=" Your amount here" value="{{instagram_account.features.like_timeline.amount}}">
+							</div>
+						</div>
+					</div>
+					<div class="ig-account-feature">
+						<input type="checkbox" {{checkedIf instagram_account.features.follow_user_followers.active}} id="follow_user_followers" value="follow_user_followers" data-onstyle="info">
+						<strong class="feature-label">Follow User Followers</strong>
+						<div class="col-md-12 params">
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="follow_users" placeholder="Enter user name separated by commas" value="{{instagram_account.features.follow_user_followers.users}}">
+								<input type="number" class="form-control" id="follow_users_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_user_followers.amount}}">
 							</div>
 						</div>
 					</div>
