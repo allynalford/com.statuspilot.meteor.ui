@@ -15,11 +15,17 @@ Template.UserSettingsAddInstagram.onDestroyed(function() {
 
 Template.UserSettingsAddInstagram.onRendered(function() {
 
-
 	Meteor.defer(function() {
 		globalOnRendered();
 		$("input[autofocus]").focus();
 	});
+
+	$('.ig-account-feature input[type="checkbox"]').bootstrapToggle();
+
+	$('.ig-account-feature input[type="checkbox"]').each(function() {
+		$(this).parent().siblings('.params').children().hide();
+	});
+
 });
 
 Template.UserSettingsAddInstagram.events({
@@ -34,13 +40,46 @@ Template.UserSettingsAddInstagram.events({
 		let confirm_insta_pass = t.find('#confirm_insta_pass').value.trim();
 		// targets
 		let add_target_audience = t.find('#add_target_audience').value.trim();
-		let add_target_hashtags = t.find('#add_target_hashtags').value.trim();
 
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
+		
 		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
-		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
-		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
+		let hashtags = t.find('#hashtags').value.trim();
+		let hashtags_amount = $(e.target).find('#hashtags_amount').val();
 
+		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
+		let like_media_location = $(e.target).find('#like_media_location').val();
+		let like_media_location_amount = $(e.target).find('#like_media_location_amount').val();
+
+		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
+		let like_timeline_amount = $(e.target).find('#like_timeline_amount').val();
+
+		let features_follow_user_followers = $(e.target).find('#follow_user_followers').prop('checked');
+		let follow_users = $(e.target).find('#follow_users').val();
+		let follow_users_amount = $(e.target).find('#follow_users_amount').val();
+
+		let features_follow_by_location = $(e.target).find('#follow_by_location').prop('checked');
+		let follow_locations = $(e.target).find('#follow_locations').val();
+		let follow_locations_amount = $(e.target).find('#follow_locations_amount').val();
+
+		let features_follow_likers_by_location = $(e.target).find('#follow_likers_by_location').prop('checked');
+		let follow_location_likers = $(e.target).find('#follow_location_likers').val();
+		let follow_location_likers_amount = $(e.target).find('#follow_location_likers_amount').val();
+
+		let features_like_likers_by_location = $(e.target).find('#like_likers_by_location').prop('checked');
+		let like_location_likers = $(e.target).find('#like_location_likers').val();
+		let like_location_likers_amount = $(e.target).find('#like_location_likers_amount').val();
+
+		let features_direct_message_followers = $(e.target).find('#direct_message_followers').prop('checked');
+		let dm_followers = $(e.target).find('#dm_followers').val();
+		let dm_followers_amount = $(e.target).find('#dm_followers_amount').val();
+
+		let features_direct_message_new_followers = $(e.target).find('#direct_message_new_followers').prop('checked');
+		let dm_new_followers = $(e.target).find('#dm_new_followers').val();
+		let dm_new_followers_amount = $(e.target).find('#dm_new_followers_amount').val();
+
+		let features_get_user_followers = $(e.target).find('#get_user_followers').prop('checked');
+		
 		// check instagram pass
 		if(add_insta_pass !== confirm_insta_pass)
 		{
@@ -59,20 +98,19 @@ Template.UserSettingsAddInstagram.events({
 			username : add_instagram,
 			password : add_insta_pass,
 			targetAudience : add_target_audience,
-			targetUsers : add_target_hashtags,
 			features : {
 				save_user_stats: {
 					start_timestamp: 0,
 					repeat_time: 3600,
-					bot_params: "",
+					bot_params: {},
 					active: features_save_user_stats ? true : false
 				},
 				like_hashtag: {
 					start_timestamp: 0,
 					repeat_time: 21600,
 					bot_params: {
-						hashtag: add_target_hashtags.split(','),
-						amount: 8
+						hashtag: hashtags.split(','),
+						amount: hashtags_amount
 					},
 					active: features_like_hashtag ? true : false
 				},
@@ -80,8 +118,8 @@ Template.UserSettingsAddInstagram.events({
 					start_timestamp: 0,
 					repeat_time: 21600,
 					bot_params: {
-						locations: [ "Dhaka", "Moscow" ],
-						amount: 8
+						locations: like_media_location,
+						amount: like_media_location_amount
 					},
 					active: features_like_medias_by_location ? true : false
 				},
@@ -89,9 +127,69 @@ Template.UserSettingsAddInstagram.events({
 					start_timestamp: 0,
 					repeat_time: 21600,
 					bot_params: {
-						amount: 8
+						amount: like_timeline_amount
 					},
 					active: features_like_timeline ? true : false
+				},
+				follow_user_followers: {
+					start_timestamp: 0,
+					repeat_time: 21600,
+					bot_params: {
+						users: follow_users.split(','),
+						amount: follow_users_amount
+					},
+					active: features_follow_user_followers ? true : false
+				},
+				follow_by_location: {
+					start_timestamp: 0,
+					repeat_time: 21600,
+					bot_params: {
+						locations: follow_locations.split(','),
+						amount: follow_locations_amount
+					},
+					active: features_follow_by_location ? true : false
+				},
+				follow_likers_by_location: {
+					start_timestamp: 0,
+					repeat_time: 21600,
+					bot_params: {
+						locations: follow_location_likers.split(','),
+						amount: follow_location_likers_amount
+					},
+					active: features_follow_likers_by_location ? true : false
+				},
+				like_likers_by_location: {
+					start_timestamp: 0,
+					repeat_time: 21600,
+					bot_params: {
+						locations: like_location_likers.split(','),
+						amount: like_location_likers_amount
+					},
+					active: features_like_likers_by_location ? true : false
+				},
+				direct_message_followers: {
+					start_timestamp: 0,
+					repeat_time: 21600,
+					bot_params: {
+						locations: dm_followers.split(','),
+						amount: dm_followers_amount
+					},
+					active: features_direct_message_followers ? true : false
+				},
+				direct_message_new_followers: {
+					start_timestamp: 0,
+					repeat_time: 21600,
+					bot_params: {
+						locations: dm_new_followers.split(','),
+						amount: dm_new_followers_amount
+					},
+					active: features_direct_message_new_followers ? true : false
+				},
+				get_user_followers: {
+					start_timestamp: 0,
+					repeat_time: 3600,
+					bot_params: {},
+					active: features_get_user_followers ? true : false
 				}
 			}
 		};
@@ -111,6 +209,14 @@ Template.UserSettingsAddInstagram.events({
 
 		return false;
 	},
+
+	'change .ig-account-feature input[type="checkbox"]': function(e) {
+		if (e.target.checked) {
+			$(e.target).parent().siblings('.params').children().show('fast');
+		} else {
+			$(e.target).parent().siblings('.params').children().hide('fast');
+		}
+	}
 
 });
 
