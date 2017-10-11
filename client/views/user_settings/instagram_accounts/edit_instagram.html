@@ -150,6 +150,16 @@
 							</div>
 						</div>
 					</div>
+					<div class="ig-account-feature">
+						<input type="checkbox" {{checkedIf instagram_account.features.follow_likers_by_location.active}} id="follow_likers_by_location" value="follow_likers_by_location" data-onstyle="info">
+						<strong class="feature-label">Follow Likers By Location</strong>
+						<div class="col-md-12 params">
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="follow_location_likers" placeholder="Enter user name separated by commas" value="{{instagram_account.features.follow_likers_by_location.locations}}">
+								<input type="number" class="form-control" id="follow_location_likers_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_likers_by_location.amount}}">
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 

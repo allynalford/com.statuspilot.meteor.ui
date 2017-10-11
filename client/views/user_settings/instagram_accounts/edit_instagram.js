@@ -64,6 +64,10 @@ Template.UserSettingsEditInstagram.events({
 		let follow_locations = $(e.target).find('#follow_locations').val();
 		let follow_locations_amount = $(e.target).find('#follow_locations_amount').val();
 
+		let features_follow_likers_by_location = $(e.target).find('#follow_likers_by_location').prop('checked');
+		let follow_location_likers = $(e.target).find('#follow_location_likers').val();
+		let follow_location_likers_amount = $(e.target).find('#follow_location_likers_amount').val();
+
 		let data = {
 			password : insta_pass,
 			targetAudience : target_audience,
@@ -94,6 +98,11 @@ Template.UserSettingsEditInstagram.events({
 					locations: follow_locations.split(','),
 					amount: follow_locations_amount,
 					active: features_follow_by_location ? true : false
+				},
+				follow_likers_by_location: {
+					locations: follow_location_likers.split(','),
+					amount: follow_location_likers_amount,
+					active: features_follow_likers_by_location ? true : false
 				}
 			}
 		};
