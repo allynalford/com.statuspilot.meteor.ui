@@ -100,22 +100,22 @@ Template.UserSettingsAddInstagram.events({
 			targetAudience : add_target_audience,
 			features : {
 				save_user_stats: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 3600,
 					bot_params: {},
 					active: features_save_user_stats ? true : false
 				},
 				like_hashtag: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
-						hashtag: hashtags.split(','),
+						hashtags: hashtags.split(','),
 						amount: hashtags_amount
 					},
 					active: features_like_hashtag ? true : false
 				},
 				like_medias_by_location: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
 						locations: like_media_location,
@@ -124,7 +124,7 @@ Template.UserSettingsAddInstagram.events({
 					active: features_like_medias_by_location ? true : false
 				},
 				like_timeline: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
 						amount: like_timeline_amount
@@ -132,7 +132,7 @@ Template.UserSettingsAddInstagram.events({
 					active: features_like_timeline ? true : false
 				},
 				follow_user_followers: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
 						users: follow_users.split(','),
@@ -141,7 +141,7 @@ Template.UserSettingsAddInstagram.events({
 					active: features_follow_user_followers ? true : false
 				},
 				follow_by_location: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
 						locations: follow_locations.split(','),
@@ -150,7 +150,7 @@ Template.UserSettingsAddInstagram.events({
 					active: features_follow_by_location ? true : false
 				},
 				follow_likers_by_location: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
 						locations: follow_location_likers.split(','),
@@ -159,7 +159,7 @@ Template.UserSettingsAddInstagram.events({
 					active: features_follow_likers_by_location ? true : false
 				},
 				like_likers_by_location: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
 						locations: like_location_likers.split(','),
@@ -168,7 +168,7 @@ Template.UserSettingsAddInstagram.events({
 					active: features_like_likers_by_location ? true : false
 				},
 				direct_message_followers: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
 						locations: dm_followers.split(','),
@@ -177,7 +177,7 @@ Template.UserSettingsAddInstagram.events({
 					active: features_direct_message_followers ? true : false
 				},
 				direct_message_new_followers: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
 						locations: dm_new_followers.split(','),
@@ -186,7 +186,7 @@ Template.UserSettingsAddInstagram.events({
 					active: features_direct_message_new_followers ? true : false
 				},
 				get_user_followers: {
-					start_timestamp: 0,
+					start_timestamp: get_start_timestamp(),
 					repeat_time: 3600,
 					bot_params: {},
 					active: features_get_user_followers ? true : false
@@ -213,8 +213,10 @@ Template.UserSettingsAddInstagram.events({
 	'change .ig-account-feature input[type="checkbox"]': function(e) {
 		if (e.target.checked) {
 			$(e.target).parent().siblings('.params').children().show('fast');
+			$(e.target).parent().siblings('.params').children().find('input').attr('required', true);
 		} else {
 			$(e.target).parent().siblings('.params').children().hide('fast');
+			$(e.target).parent().siblings('.params').children().find('input').removeAttr('required');
 		}
 	}
 
@@ -228,3 +230,10 @@ Template.UserSettingsAddInstagram.helpers({
 		return pageSession.get("infoMessage");
 	}
 });
+
+
+// LIB - get random timestamp 
+
+function get_start_timestamp () {
+	return moment().unix() - Math.floor((Math.random() * 36000) + 1);
+}
