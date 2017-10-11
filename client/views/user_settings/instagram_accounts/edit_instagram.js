@@ -20,6 +20,17 @@ Template.UserSettingsEditInstagram.onRendered(function() {
 		$("input[autofocus]").focus();
 	});
 
+	// Init feature toggle and field to frontend
+	$('.ig-account-feature input[type="checkbox"]').bootstrapToggle();
+
+	$('.ig-account-feature input[type="checkbox"]').each(function(e) {
+		if (this.checked) {
+			$(this).parent().siblings('.params').children().show();
+		} else {
+			$(this).parent().siblings('.params').children().hide();
+		}
+	});
+
 });
 
 Template.UserSettingsEditInstagram.events({
@@ -41,8 +52,34 @@ Template.UserSettingsEditInstagram.events({
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
 		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
 		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
+
 		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
-		
+		let like_timeline_amount = $(e.target).find('#like_timeline_amount').val();
+
+		let features_follow_user_followers = $(e.target).find('#follow_user_followers').prop('checked');
+		let follow_users = $(e.target).find('#follow_users').val();
+		let follow_users_amount = $(e.target).find('#follow_users_amount').val();
+
+		let features_follow_by_location = $(e.target).find('#follow_by_location').prop('checked');
+		let follow_locations = $(e.target).find('#follow_locations').val();
+		let follow_locations_amount = $(e.target).find('#follow_locations_amount').val();
+
+		let features_follow_likers_by_location = $(e.target).find('#follow_likers_by_location').prop('checked');
+		let follow_location_likers = $(e.target).find('#follow_location_likers').val();
+		let follow_location_likers_amount = $(e.target).find('#follow_location_likers_amount').val();
+
+		let features_like_likers_by_location = $(e.target).find('#like_likers_by_location').prop('checked');
+		let like_location_likers = $(e.target).find('#like_location_likers').val();
+		let like_location_likers_amount = $(e.target).find('#like_location_likers_amount').val();
+
+		let features_direct_message_followers = $(e.target).find('#direct_message_followers').prop('checked');
+		let dm_followers = $(e.target).find('#dm_followers').val();
+		let dm_followers_amount = $(e.target).find('#dm_followers_amount').val();
+
+		let features_direct_message_new_followers = $(e.target).find('#direct_message_new_followers').prop('checked');
+		let dm_new_followers = $(e.target).find('#dm_new_followers').val();
+		let dm_new_followers_amount = $(e.target).find('#dm_new_followers_amount').val();
+
 		let data = {
 			password : insta_pass,
 			targetAudience : target_audience,
@@ -61,8 +98,39 @@ Template.UserSettingsEditInstagram.events({
 					active: features_like_medias_by_location ? true : false
 				},
 				like_timeline: {
+					amount: like_timeline_amount,
 					active: features_like_timeline ? true : false
 				},
+				follow_user_followers: {
+					users: follow_users.split(','),
+					amount: follow_users_amount,
+					active: features_follow_user_followers ? true : false
+				},
+				follow_by_location: {
+					locations: follow_locations.split(','),
+					amount: follow_locations_amount,
+					active: features_follow_by_location ? true : false
+				},
+				follow_likers_by_location: {
+					locations: follow_location_likers.split(','),
+					amount: follow_location_likers_amount,
+					active: features_follow_likers_by_location ? true : false
+				},
+				like_likers_by_location: {
+					locations: like_location_likers.split(','),
+					amount: like_location_likers_amount,
+					active: features_like_likers_by_location ? true : false
+				},
+				direct_message_followers: {
+					locations: dm_followers.split(','),
+					amount: dm_followers_amount,
+					active: features_direct_message_followers ? true : false
+				},
+				direct_message_new_followers: {
+					locations: dm_new_followers.split(','),
+					amount: dm_new_followers_amount,
+					active: features_direct_message_new_followers ? true : false
+				}
 			}
 		};
 
@@ -97,6 +165,14 @@ Template.UserSettingsEditInstagram.events({
 				pageSession.set("infoMessage", "Instagram profile <strong>" + username + "</strong> removed");
 			}
 		});
+	},
+
+	'change .ig-account-feature input[type="checkbox"]': function(e) {
+		if (e.target.checked) {
+			$(e.target).parent().siblings('.params').children().show('fast');
+		} else {
+			$(e.target).parent().siblings('.params').children().hide('fast');
+		}
 	}
 
 });
