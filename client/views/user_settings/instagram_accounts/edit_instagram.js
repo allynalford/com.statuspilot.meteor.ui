@@ -76,6 +76,10 @@ Template.UserSettingsEditInstagram.events({
 		let dm_followers = $(e.target).find('#dm_followers').val();
 		let dm_followers_amount = $(e.target).find('#dm_followers_amount').val();
 
+		let features_direct_message_new_followers = $(e.target).find('#direct_message_new_followers').prop('checked');
+		let dm_new_followers = $(e.target).find('#dm_new_followers').val();
+		let dm_new_followers_amount = $(e.target).find('#dm_new_followers_amount').val();
+
 		let data = {
 			password : insta_pass,
 			targetAudience : target_audience,
@@ -121,6 +125,11 @@ Template.UserSettingsEditInstagram.events({
 					locations: dm_followers.split(','),
 					amount: dm_followers_amount,
 					active: features_direct_message_followers ? true : false
+				},
+				direct_message_new_followers: {
+					locations: dm_new_followers.split(','),
+					amount: dm_new_followers_amount,
+					active: features_direct_message_new_followers ? true : false
 				}
 			}
 		};

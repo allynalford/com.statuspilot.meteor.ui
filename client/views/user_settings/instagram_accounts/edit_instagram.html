@@ -180,6 +180,16 @@
 							</div>
 						</div>
 					</div>
+					<div class="ig-account-feature">
+						<input type="checkbox" {{checkedIf instagram_account.features.direct_message_new_followers.active}} id="direct_message_new_followers" value="direct_message_new_followers" data-onstyle="info">
+						<strong class="feature-label">Direct Message New Followers</strong>
+						<div class="col-md-12 params">
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="dm_new_followers" placeholder="Enter user name separated by commas" value="{{instagram_account.features.direct_message_new_followers.locations}}">
+								<input type="number" class="form-control" id="dm_new_followers_amount" placeholder="Your amount here" value="{{instagram_account.features.direct_message_new_followers.amount}}">
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
