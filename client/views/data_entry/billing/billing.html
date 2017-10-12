@@ -1,0 +1,131 @@
+<template name="Billing">
+	<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<ul class="breadcrumb">
+					<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+					<li class="active">New Billings</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</section>
+
+	<section id="content">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="aligncenter">New Customer</h1>
+				<br>
+				{{#if errorMessage}}
+				<div class="alert alert-warning">
+					{{errorMessage}}
+				</div>
+				{{/if}}
+
+
+
+				<ul class="nav nav-tabs">
+			    <li class="active"><a data-toggle="tab" href="#customer">Customer</a></li>
+			    <li><a data-toggle="tab" href="#account">Account</a></li>
+			    <li><a data-toggle="tab" href="#billing">Billing</a></li>
+			  </ul>
+
+			  <div class="tab-content">
+			    <div id="customer" class="tab-pane fade in active">
+			    	<form id="customer_billing_form" role="form">
+							<h4>Basic Customer Information</h4>
+							<div class="form-group">
+								<textarea id="billing_note" rows="5" cols="20" class="form-control" placeholder="Notes" ></textarea>
+							</div>
+							<div class="form-group">
+								<input id="billing_company" type="text" class="form-control" placeholder="Company Name" required>
+							</div>
+							<div class="form-group">
+								<input id="billing__bsns_phone_no" type="text" class="form-control" placeholder="Business Phone Number" required>
+							</div>
+							<div class="form-group">
+								<input id="billing_alt_phone_no" type="text" class="form-control" placeholder="Alternate Phone Number">
+							</div>
+							<div class="form-group">
+								<input id="billing_email" type="text" class="form-control" placeholder="Email address" required>
+							</div>
+              <div class="form-group">
+                <textarea id="billing_fname" rows="3" cols="20" class="form-control" placeholder="First Name" required></textarea>
+              </div>
+              <div class="form-group">
+                <textarea id="billing_lname" rows="3" cols="20" class="form-control" placeholder="Last Name" required></textarea>
+              </div>
+							<div class="form-group">
+								<textarea id="billing_address" rows="3" cols="20" class="form-control" placeholder="Full Address" required></textarea>
+							</div>
+							<div class="form-group">
+								<input id="billing_city" type="text" class="form-control" placeholder="City" required>
+							</div>
+              <div class="form-group">
+								<select id="billing_state" class="form-control">
+									<option value="00">-- Select State --</option>
+									<option value="FL">Florida</option>
+									<option value="NY">New York</option>
+									<option value="CA">California</option>
+								</select>
+							</div>
+              <div class="form-group">
+                <input id="billing_zip" type="text" class="form-control" placeholder="Zip Code" required>
+              </div>
+							<div class="form-group">
+								<select id="billing_state" class="form-control">
+									<option value="">-- Select Country --</option>
+									<option value="US">United States</option>
+								</select>
+							</div>
+              <div class="form-group">
+                <input id="billing_number_of_locations" type="text" class="form-control" placeholder="How many locations do they have?" required>
+              </div>
+							<div class="text-center">
+								<button type="submit" class="btn btn-theme" data-loading-text="Please wait...">Save.. Next...</button>
+							</div>
+						</form>
+			    </div>
+			    <div id="account" class="tab-pane fade">
+						<form id="account_billing_form" role="form">
+							<h4>Basic Account Information</h4>
+							<div class="input-div">
+								<input type="checkbox" name="account_billing_has_account" id="billing_has_account" value="billing_has_account">
+								<label for="account_billing_has_account">Has Instagram Account?</label> <br>
+                <input type="checkbox" name="account_billing_has_facebook" id="billing_has_facebook" value="billing_has_facebook">
+                <label for="account_billing_has_facebook">Has Facebook Account?</label> <br>
+                <input type="checkbox" name="billing_can_link_facebook" id="billing_can_link_facebook" value="billing_can_link_facebook">
+                <label for="billing_can_link_facebook">Can Link Facebook Account?</label> <br>
+							</div>
+							<div class="form-group">
+								<input id="account_billing_username" type="text" class="form-control" placeholder="Account User Name" required>
+							</div>
+							<div class="form-group">
+								<input id="account_billing_password" type="password" class="form-control" placeholder="Account Password" required>
+							</div>
+							<div class="form-group">
+								<input id="account_billing_confirm_password" type="password" class="form-control" placeholder="Account Confirm password" required>
+							</div>
+							<div class="form-group">
+								<textarea id="account_billing_target" rows="5" cols="20" class="form-control" placeholder="Target Audience" ></textarea>
+							</div>
+              <div class="form-group">
+                <textarea id="account_billing_hashtags" rows="5" cols="20" class="form-control" placeholder="Target Hashtags" ></textarea>
+              </div>
+							<div class="text-center">
+								<button type="submit" class="btn btn-theme" data-loading-text="Please wait...">Save.. Next...</button>
+							</div>
+						</form>
+			    </div>
+			    <div id="billing" class="tab-pane fade">
+			      <h3>Menu 2</h3>
+			      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	</section>
+</template>
