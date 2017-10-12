@@ -41,8 +41,10 @@ Template.UserSettingsAddInstagram.events({
 		// targets
 		let add_target_audience = t.find('#add_target_audience').value.trim();
 
+		// feature set
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
-		
+		let repeat_save_user_stats = $(e.target).find('#repeat_save_user_stats').val();
+
 		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
 		let hashtags = t.find('#hashtags').value.trim();
 		let hashtags_amount = $(e.target).find('#hashtags_amount').val();
@@ -101,7 +103,7 @@ Template.UserSettingsAddInstagram.events({
 			features : {
 				save_user_stats: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 3600,
+					repeat_time: repeat_save_user_stats * 3600,
 					bot_params: {},
 					active: features_save_user_stats ? true : false
 				},

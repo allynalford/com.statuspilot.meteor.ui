@@ -44,6 +44,12 @@
 				<div class="ig-account-feature">
 					<input type="checkbox" id="save_user_stats"  value="save_user_stats" data-onstyle="info">
 					<strong class="feature-label">Save User Stats</strong>
+					<div class="col-md-12 params">
+						<div class="col-md-6">
+							<label for="repeat_save_user_stats">Repeat:</label>
+							<input type="number" class="form-control" id="repeat_save_user_stats" placeholder="Enter repeat time in hours">
+						</div>
+					</div>
 				</div>
 				<div class="ig-account-feature">
 					<input type="checkbox" id="like_hashtag" value="like_hashtag" data-onstyle="info">
@@ -51,9 +57,9 @@
 					<div class="col-md-12 params">
 						<div class="col-md-6">
 							<label for="hashtags">Hashtags:</label>
-							<input type="text" class="form-control" id="hashtags" placeholder="Enter hashtags separated by commas" value="{{instagram_account.features.like_hashtag.bot_params.locations}}">
+							<input type="text" class="form-control" id="hashtags" placeholder="Enter hashtags separated by commas">
 							<label for="hashtags_amount">Amount:</label>
-							<input type="number" class="form-control" id="hashtags_amount" placeholder="Your amount here" value="{{instagram_account.features.like_hashtag.bot_params.amount}}">
+							<input type="number" class="form-control" id="hashtags_amount" placeholder="Your amount here">
 						</div>
 					</div>
 				</div>
@@ -63,9 +69,9 @@
 					<div class="col-md-12 params">
 						<div class="col-md-6">
 							<label for="like_media_location">Locations:</label>
-							<input type="text" class="form-control" id="like_media_location" placeholder="Enter location name separated by commas" value="{{instagram_account.features.like_medias_by_location.bot_params.locations}}">
+							<input type="text" class="form-control" id="like_media_location" placeholder="Enter location name separated by commas">
 							<label for="like_media_location_amount">Amount:</label>
-							<input type="number" class="form-control" id="like_media_location_amount" placeholder="Your amount here" value="{{instagram_account.features.like_medias_by_location.bot_params.amount}}">
+							<input type="number" class="form-control" id="like_media_location_amount" placeholder="Your amount here">
 						</div>
 					</div>
 				</div>
@@ -75,7 +81,7 @@
 					<div class="col-md-12 params">
 						<div class="col-md-6">
 							<label for="like_timeline_amount">Amount:</label>
-							<input type="number" class="form-control" id="like_timeline_amount" placeholder=" Your amount here" value="{{instagram_account.features.like_timeline.bot_params.amount}}">
+							<input type="number" class="form-control" id="like_timeline_amount" placeholder=" Your amount here">
 						</div>
 					</div>
 				</div>
@@ -85,9 +91,9 @@
 					<div class="col-md-12 params">
 						<div class="col-md-6">
 							<label for="follow_users">Users:</label>
-							<input type="text" class="form-control" id="follow_users" placeholder="Enter user name separated by commas" value="{{instagram_account.features.follow_user_followers.bot_params.users}}">
+							<input type="text" class="form-control" id="follow_users" placeholder="Enter user name separated by commas">
 							<label for="follow_users_amount">Amount:</label>
-							<input type="number" class="form-control" id="follow_users_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_user_followers.bot_params.amount}}">
+							<input type="number" class="form-control" id="follow_users_amount" placeholder="Your amount here">
 						</div>
 					</div>
 				</div>
@@ -97,9 +103,9 @@
 					<div class="col-md-12 params">
 						<div class="col-md-6">
 							<label for="follow_locations">Locations:</label>
-							<input type="text" class="form-control" id="follow_locations" placeholder="Enter location name separated by commas" value="{{instagram_account.features.follow_by_location.bot_params.locations}}">
+							<input type="text" class="form-control" id="follow_locations" placeholder="Enter location name separated by commas">
 							<label for="follow_locations_amount">Amount:</label>
-							<input type="number" class="form-control" id="follow_locations_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_by_location.bot_params.amount}}">
+							<input type="number" class="form-control" id="follow_locations_amount" placeholder="Your amount here">
 						</div>
 					</div>
 				</div>
@@ -109,9 +115,9 @@
 					<div class="col-md-12 params">
 						<div class="col-md-6">
 							<label for="follow_location_likers">Locations:</label>
-							<input type="text" class="form-control" id="follow_location_likers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.follow_likers_by_location.bot_params.locations}}">
+							<input type="text" class="form-control" id="follow_location_likers" placeholder="Enter location name separated by commas">
 							<label for="follow_location_likers_amount">Amount:</label>
-							<input type="number" class="form-control" id="follow_location_likers_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_likers_by_location.bot_params.amount}}">
+							<input type="number" class="form-control" id="follow_location_likers_amount" placeholder="Your amount here">
 						</div>
 					</div>
 				</div>
@@ -121,9 +127,9 @@
 					<div class="col-md-12 params">
 						<div class="col-md-6">
 							<label for="like_location_likers">Locations:</label>
-							<input type="text" class="form-control" id="like_location_likers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.like_likers_by_location.bot_params.locations}}">
+							<input type="text" class="form-control" id="like_location_likers" placeholder="Enter location name separated by commas">
 							<label for="like_location_likers_amount">Amount:</label>
-							<input type="number" class="form-control" id="like_location_likers_amount" placeholder="Your amount here" value="{{instagram_account.features.like_likers_by_location.bot_params.amount}}">
+							<input type="number" class="form-control" id="like_location_likers_amount" placeholder="Your amount here">
 						</div>
 					</div>
 				</div>
@@ -133,9 +139,9 @@
 					<div class="col-md-12 params">
 						<div class="col-md-6">
 							<label for="dm_followers">Locations:</label>
-							<input type="text" class="form-control" id="dm_followers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.direct_message_followers.bot_params.locations}}">
+							<input type="text" class="form-control" id="dm_followers" placeholder="Enter location name separated by commas">
 							<label for="dm_followers_amount">Amount:</label>
-							<input type="number" class="form-control" id="dm_followers_amount" placeholder="Your amount here" value="{{instagram_account.features.direct_message_followers.bot_params.amount}}">
+							<input type="number" class="form-control" id="dm_followers_amount" placeholder="Your amount here">
 						</div>
 					</div>
 				</div>
@@ -145,9 +151,9 @@
 					<div class="col-md-12 params">
 						<div class="col-md-6">
 							<label for="dm_new_followers">Locations: </label>
-							<input type="text" class="form-control" id="dm_new_followers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.direct_message_new_followers.bot_params.locations}}">
+							<input type="text" class="form-control" id="dm_new_followers" placeholder="Enter location name separated by commas">
 							<label for="dm_new_followers_amount">Amount:: </label>
-							<input type="number" class="form-control" id="dm_new_followers_amount" placeholder="Your amount here" value="{{instagram_account.features.direct_message_new_followers.bot_params.amount}}">
+							<input type="number" class="form-control" id="dm_new_followers_amount" placeholder="Your amount here">
 						</div>
 					</div>
 				</div>
