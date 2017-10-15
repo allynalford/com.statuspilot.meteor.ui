@@ -41,44 +41,57 @@ Template.UserSettingsAddInstagram.events({
 		// targets
 		let add_target_audience = t.find('#add_target_audience').value.trim();
 
+		// feature set
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
+		let repeat_save_user_stats = $(e.target).find('#repeat_save_user_stats').val();
 		
 		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
 		let hashtags = t.find('#hashtags').value.trim();
 		let hashtags_amount = $(e.target).find('#hashtags_amount').val();
-
+		let repeat_like_hashtag = $(e.target).find('#repeat_like_hashtag').val();
+		
 		let features_like_medias_by_location = $(e.target).find('#like_medias_by_location').prop('checked');
 		let like_media_location = $(e.target).find('#like_media_location').val();
 		let like_media_location_amount = $(e.target).find('#like_media_location_amount').val();
+		let repeat_like_medias_by_location = $(e.target).find('#repeat_like_medias_by_location').val();
 
 		let features_like_timeline = $(e.target).find('#like_timeline').prop('checked');
 		let like_timeline_amount = $(e.target).find('#like_timeline_amount').val();
-
+		let repeat_like_timeline = $(e.target).find('#repeat_like_timeline').val();
+		
 		let features_follow_user_followers = $(e.target).find('#follow_user_followers').prop('checked');
 		let follow_users = $(e.target).find('#follow_users').val();
 		let follow_users_amount = $(e.target).find('#follow_users_amount').val();
-
+		let repeat_follow_user_followers = $(e.target).find('#repeat_follow_user_followers').val();
+		
 		let features_follow_by_location = $(e.target).find('#follow_by_location').prop('checked');
 		let follow_locations = $(e.target).find('#follow_locations').val();
 		let follow_locations_amount = $(e.target).find('#follow_locations_amount').val();
-
+		let repeat_follow_by_location = $(e.target).find('#repeat_follow_by_location').val();
+		
 		let features_follow_likers_by_location = $(e.target).find('#follow_likers_by_location').prop('checked');
 		let follow_location_likers = $(e.target).find('#follow_location_likers').val();
 		let follow_location_likers_amount = $(e.target).find('#follow_location_likers_amount').val();
-
+		let repeat_follow_likers_by_location = $(e.target).find('#repeat_follow_likers_by_location').val();
+		
 		let features_like_likers_by_location = $(e.target).find('#like_likers_by_location').prop('checked');
 		let like_location_likers = $(e.target).find('#like_location_likers').val();
 		let like_location_likers_amount = $(e.target).find('#like_location_likers_amount').val();
-
+		let repeat_like_likers_by_location = $(e.target).find('#repeat_like_likers_by_location').val();
+		
 		let features_direct_message_followers = $(e.target).find('#direct_message_followers').prop('checked');
 		let dm_followers = $(e.target).find('#dm_followers').val();
+		let dm_followers_message = $(e.target).find('#dm_followers_message').val();
 		let dm_followers_amount = $(e.target).find('#dm_followers_amount').val();
+		let repeat_direct_message_followers = $(e.target).find('#repeat_direct_message_followers').val();
 
 		let features_direct_message_new_followers = $(e.target).find('#direct_message_new_followers').prop('checked');
-		let dm_new_followers = $(e.target).find('#dm_new_followers').val();
+		let dm_new_followers_message = $(e.target).find('#dm_new_followers_message').val();
 		let dm_new_followers_amount = $(e.target).find('#dm_new_followers_amount').val();
+		let repeat_direct_message_new_followers = $(e.target).find('#repeat_direct_message_new_followers').val();
 
 		let features_get_user_followers = $(e.target).find('#get_user_followers').prop('checked');
+		let repeat_get_user_followers = $(e.target).find('#repeat_get_user_followers').val();
 		
 		// check instagram pass
 		if(add_insta_pass !== confirm_insta_pass)
@@ -101,13 +114,13 @@ Template.UserSettingsAddInstagram.events({
 			features : {
 				save_user_stats: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 3600,
+					repeat_time: repeat_save_user_stats * 3600,
 					bot_params: {},
 					active: features_save_user_stats ? true : false
 				},
 				like_hashtag: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 21600,
+					repeat_time: repeat_like_hashtag * 3600,
 					bot_params: {
 						hashtags: hashtags.split(','),
 						amount: hashtags_amount
@@ -116,7 +129,7 @@ Template.UserSettingsAddInstagram.events({
 				},
 				like_medias_by_location: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 21600,
+					repeat_time: repeat_like_medias_by_location * 3600,
 					bot_params: {
 						locations: like_media_location,
 						amount: like_media_location_amount
@@ -125,7 +138,7 @@ Template.UserSettingsAddInstagram.events({
 				},
 				like_timeline: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 21600,
+					repeat_time: repeat_like_timeline * 3600,
 					bot_params: {
 						amount: like_timeline_amount
 					},
@@ -133,7 +146,7 @@ Template.UserSettingsAddInstagram.events({
 				},
 				follow_user_followers: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 21600,
+					repeat_time: repeat_follow_user_followers * 3600,
 					bot_params: {
 						users: follow_users.split(','),
 						amount: follow_users_amount
@@ -142,7 +155,7 @@ Template.UserSettingsAddInstagram.events({
 				},
 				follow_by_location: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 21600,
+					repeat_time: repeat_follow_by_location * 3600,
 					bot_params: {
 						locations: follow_locations.split(','),
 						amount: follow_locations_amount
@@ -151,7 +164,7 @@ Template.UserSettingsAddInstagram.events({
 				},
 				follow_likers_by_location: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 21600,
+					repeat_time: repeat_follow_likers_by_location * 3600,
 					bot_params: {
 						locations: follow_location_likers.split(','),
 						amount: follow_location_likers_amount
@@ -160,7 +173,7 @@ Template.UserSettingsAddInstagram.events({
 				},
 				like_likers_by_location: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 21600,
+					repeat_time: repeat_like_likers_by_location * 3600,
 					bot_params: {
 						locations: like_location_likers.split(','),
 						amount: like_location_likers_amount
@@ -169,25 +182,26 @@ Template.UserSettingsAddInstagram.events({
 				},
 				direct_message_followers: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 21600,
+					repeat_time: repeat_direct_message_followers * 3600,
 					bot_params: {
-						locations: dm_followers.split(','),
+						message: dm_followers_message,
+						users: dm_followers.split(','),
 						amount: dm_followers_amount
 					},
 					active: features_direct_message_followers ? true : false
 				},
 				direct_message_new_followers: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 21600,
+					repeat_time: repeat_direct_message_new_followers * 3600,
 					bot_params: {
-						locations: dm_new_followers.split(','),
+						message: dm_new_followers_message,
 						amount: dm_new_followers_amount
 					},
 					active: features_direct_message_new_followers ? true : false
 				},
 				get_user_followers: {
 					start_timestamp: get_start_timestamp(),
-					repeat_time: 3600,
+					repeat_time: repeat_get_user_followers * 3600,
 					bot_params: {},
 					active: features_get_user_followers ? true : false
 				}
