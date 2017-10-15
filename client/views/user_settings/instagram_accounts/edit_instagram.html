@@ -112,7 +112,6 @@
 					<div class="ig-account-feature">
 						<input type="checkbox" {{checkedIf instagram_account.features.save_user_stats.active}} id="save_user_stats"  value="save_user_stats" data-onstyle="info">
 						<strong class="feature-label">Save User Stats</strong>
-						<!-- TO-DO: Repeat in work -->
 						<div class="col-md-12 params">
 							<div class="col-md-6">
 								<label for="repeat_save_user_stats">Repeat:</label>
@@ -129,6 +128,8 @@
 								<input type="text" class="form-control" id="hashtags" placeholder="Enter hashtags separated by commas" value="{{instagram_account.features.like_hashtag.bot_params.hashtags}}">
 								<label for="hashtags_amount">Amount:</label>
 								<input type="number" class="form-control" id="hashtags_amount" placeholder="Your amount here" value="{{instagram_account.features.like_hashtag.bot_params.amount}}">
+								<label for="repeat_like_hashtag">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_like_hashtag" placeholder="Enter repeat time in hours" value="{{showRepeatTime instagram_account.features.like_hashtag.repeat_time}}">
 							</div>
 						</div>
 					</div>
@@ -141,6 +142,8 @@
 								<input type="text" class="form-control" id="like_media_location" placeholder="Enter location name separated by commas" value="{{instagram_account.features.like_medias_by_location.bot_params.locations}}">
 								<label for="like_media_location_amount">Amount:</label>
 								<input type="number" class="form-control" id="like_media_location_amount" placeholder="Your amount here" value="{{instagram_account.features.like_medias_by_location.bot_params.amount}}">
+								<label for="repeat_like_medias_by_location">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_like_medias_by_location" placeholder="Enter repeat time in hours" value="{{showRepeatTime instagram_account.features.like_medias_by_location.repeat_time}}">
 							</div>
 						</div>
 					</div>
@@ -151,6 +154,8 @@
 							<div class="col-md-6">
 								<label for="like_timeline_amount">Amount:</label>
 								<input type="number" class="form-control" id="like_timeline_amount" placeholder=" Your amount here" value="{{instagram_account.features.like_timeline.bot_params.amount}}">
+								<label for="repeat_like_timeline">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_like_timeline" placeholder="Enter repeat time in hours" value="{{showRepeatTime instagram_account.features.like_timeline.repeat_time}}">
 							</div>
 						</div>
 					</div>
@@ -163,6 +168,8 @@
 								<input type="text" class="form-control" id="follow_users" placeholder="Enter user name separated by commas" value="{{instagram_account.features.follow_user_followers.bot_params.users}}">
 								<label for="follow_users_amount">Amount:</label>
 								<input type="number" class="form-control" id="follow_users_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_user_followers.bot_params.amount}}">
+								<label for="repeat_follow_user_followers">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_follow_user_followers" placeholder="Enter repeat time in hours" value="{{showRepeatTime instagram_account.features.follow_user_followers.repeat_time}}">
 							</div>
 						</div>
 					</div>
@@ -175,6 +182,8 @@
 								<input type="text" class="form-control" id="follow_locations" placeholder="Enter location name separated by commas" value="{{instagram_account.features.follow_by_location.bot_params.locations}}">
 								<label for="follow_locations_amount">Amount:</label>
 								<input type="number" class="form-control" id="follow_locations_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_by_location.bot_params.amount}}">
+								<label for="repeat_follow_by_location">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_follow_by_location" placeholder="Enter repeat time in hours" value="{{showRepeatTime instagram_account.features.follow_by_location.repeat_time}}">
 							</div>
 						</div>
 					</div>
@@ -187,6 +196,8 @@
 								<input type="text" class="form-control" id="follow_location_likers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.follow_likers_by_location.bot_params.locations}}">
 								<label for="follow_location_likers_amount">Amount:</label>
 								<input type="number" class="form-control" id="follow_location_likers_amount" placeholder="Your amount here" value="{{instagram_account.features.follow_likers_by_location.bot_params.amount}}">
+								<label for="repeat_follow_likers_by_location">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_follow_likers_by_location" placeholder="Enter repeat time in hours" value="{{showRepeatTime instagram_account.features.follow_likers_by_location.repeat_time}}">
 							</div>
 						</div>
 					</div>
@@ -199,6 +210,8 @@
 								<input type="text" class="form-control" id="like_location_likers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.like_likers_by_location.bot_params.locations}}">
 								<label for="like_location_likers_amount">Amount:</label>
 								<input type="number" class="form-control" id="like_location_likers_amount" placeholder="Your amount here" value="{{instagram_account.features.like_likers_by_location.bot_params.amount}}">
+								<label for="repeat_like_likers_by_location">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_like_likers_by_location" placeholder="Enter repeat time in hours" value="{{showRepeatTime instagram_account.features.like_likers_by_location.repeat_time}}">
 							</div>
 						</div>
 					</div>
@@ -213,6 +226,8 @@
 								<textarea class="form-control" id="dm_followers_message" placeholder="Enter your message" value="{{instagram_account.features.direct_message_followers.bot_params.message}}"></textarea>
 								<label for="dm_followers_amount">Amount:</label>
 								<input type="number" class="form-control" id="dm_followers_amount" placeholder="Your amount here" value="{{instagram_account.features.direct_message_followers.bot_params.amount}}">
+								<label for="repeat_direct_message_followers">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_direct_message_followers" placeholder="Enter repeat time in hours" value="{{showRepeatTime instagram_account.features.direct_message_followers.repeat_time}}">
 							</div>
 						</div>
 					</div>
@@ -225,12 +240,20 @@
 								<textarea class="form-control" id="dm_new_followers_message" placeholder="Enter your message" value="{{instagram_account.features.direct_message_new_followers.bot_params.message}}"></textarea>
 								<label for="dm_new_followers_amount">Amount:: </label>
 								<input type="number" class="form-control" id="dm_new_followers_amount" placeholder="Your amount here" value="{{instagram_account.features.direct_message_new_followers.bot_params.amount}}">
+								<label for="repeat_direct_message_new_followers">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_direct_message_new_followers" placeholder="Enter repeat time in hours" value="{{showRepeatTime instagram_account.features.direct_message_new_followers.repeat_time}}">
 							</div>
 						</div>
 					</div>
 					<div class="ig-account-feature">
 						<input type="checkbox" {{checkedIf instagram_account.features.get_user_followers.active}} id="get_user_followers"  value="get_user_followers" data-onstyle="info">
 						<strong class="feature-label">Get User Followers</strong>
+						<div class="col-md-12 params">
+							<div class="col-md-6">
+								<label for="repeat_get_user_followers">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_get_user_followers" placeholder="Enter repeat time in hours" value="{{showRepeatTime instagram_account.features.get_user_followers.repeat_time}}">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
