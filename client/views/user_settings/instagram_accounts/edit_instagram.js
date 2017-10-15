@@ -225,6 +225,9 @@ Template.UserSettingsEditInstagram.helpers({
 	},
 	checkedIf: function(value) {
 		return value ? "checked" : ""
+	},
+	showRepeatTime: function(val) {
+		return val/3600;
 	}
 
 });
