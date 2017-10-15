@@ -19,9 +19,11 @@
                     font-weight: 600;
                 }
 
-                input {
+                input, textarea {
                     margin-bottom: 10px;
                     display: inline-block;
+                    vertical-align: middle;
+                    resize: none;
                     width: calc(100% - #{$label-width} - 5px);
                 }
             }
