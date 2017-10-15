@@ -51,7 +51,8 @@ Template.UserSettingsEditInstagram.events({
 		let target_audience = $(e.target).find('#target-audience').val();
 
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');
-
+		let repeat_save_user_stats = $(e.target).find('#repeat_save_user_stats').val();
+		
 		let features_like_hashtag = $(e.target).find('#like_hashtag').prop('checked');
 		let hashtags = t.find('#hashtags').value.trim();
 		let hashtags_amount = $(e.target).find('#hashtags_amount').val();
@@ -81,19 +82,21 @@ Template.UserSettingsEditInstagram.events({
 
 		let features_direct_message_followers = $(e.target).find('#direct_message_followers').prop('checked');
 		let dm_followers = $(e.target).find('#dm_followers').val();
+		let dm_followers_message = $(e.target).find('#dm_followers_message').val();
 		let dm_followers_amount = $(e.target).find('#dm_followers_amount').val();
 
 		let features_direct_message_new_followers = $(e.target).find('#direct_message_new_followers').prop('checked');
-		let dm_new_followers = $(e.target).find('#dm_new_followers').val();
+		let dm_new_followers_message = $(e.target).find('#dm_new_followers_message').val();
 		let dm_new_followers_amount = $(e.target).find('#dm_new_followers_amount').val();
 
 		let features_get_user_followers = $(e.target).find('#get_user_followers').prop('checked');
-		
+
 		let data = {
 			password : insta_pass,
 			targetAudience : target_audience,
 			features : {
 				save_user_stats: {
+					repeat_time: repeat_save_user_stats * 3600,
 					active: features_save_user_stats ? true : false
 				},
 				like_hashtag: {
@@ -146,14 +149,15 @@ Template.UserSettingsEditInstagram.events({
 				},
 				direct_message_followers: {
 					bot_params: {
-						locations: dm_followers.split(','),
+						message: dm_followers_message,
+						users: dm_followers.split(','),
 						amount: dm_followers_amount
 					},
 					active: features_direct_message_followers ? true : false
 				},
 				direct_message_new_followers: {
 					bot_params: {
-						locations: dm_new_followers.split(','),
+						message: dm_new_followers_message,
 						amount: dm_new_followers_amount
 					},
 					active: features_direct_message_new_followers ? true : false

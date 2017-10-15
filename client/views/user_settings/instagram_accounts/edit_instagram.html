@@ -112,6 +112,13 @@
 					<div class="ig-account-feature">
 						<input type="checkbox" {{checkedIf instagram_account.features.save_user_stats.active}} id="save_user_stats"  value="save_user_stats" data-onstyle="info">
 						<strong class="feature-label">Save User Stats</strong>
+						<!-- TO-DO: Repeat in work -->
+						<div class="col-md-12 params">
+							<div class="col-md-6">
+								<label for="repeat_save_user_stats">Repeat:</label>
+								<input type="number" class="form-control" id="repeat_save_user_stats" placeholder="Enter repeat time in hours" value="{{instagram_account.features.save_user_stats.repeat_time}}">
+							</div>
+						</div>
 					</div>
 					<div class="ig-account-feature">
 						<input type="checkbox" {{checkedIf instagram_account.features.like_hashtag.active}} id="like_hashtag" value="like_hashtag" data-onstyle="info">
@@ -200,8 +207,10 @@
 						<strong class="feature-label">Direct Message Followers</strong>
 						<div class="col-md-12 params">
 							<div class="col-md-6">
-								<label for="dm_followers">Locations:</label>
-								<input type="text" class="form-control" id="dm_followers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.direct_message_followers.bot_params.locations}}">
+								<label for="dm_followers">Users:</label>
+								<input type="text" class="form-control" id="dm_followers" placeholder="Enter username separated by commas" value="{{instagram_account.features.direct_message_followers.bot_params.users}}">
+								<label for="dm_followers_message">Message:</label>
+								<textarea class="form-control" id="dm_followers_message" placeholder="Enter your message" value="{{instagram_account.features.direct_message_followers.bot_params.message}}"></textarea>
 								<label for="dm_followers_amount">Amount:</label>
 								<input type="number" class="form-control" id="dm_followers_amount" placeholder="Your amount here" value="{{instagram_account.features.direct_message_followers.bot_params.amount}}">
 							</div>
@@ -212,8 +221,8 @@
 						<strong class="feature-label">Direct Message New Followers</strong>
 						<div class="col-md-12 params">
 							<div class="col-md-6">
-								<label for="dm_new_followers">Locations: </label>
-								<input type="text" class="form-control" id="dm_new_followers" placeholder="Enter location name separated by commas" value="{{instagram_account.features.direct_message_new_followers.bot_params.locations}}">
+								<label for="dm_new_followers_message">Message: </label>
+								<textarea class="form-control" id="dm_new_followers_message" placeholder="Enter your message" value="{{instagram_account.features.direct_message_new_followers.bot_params.message}}"></textarea>
 								<label for="dm_new_followers_amount">Amount:: </label>
 								<input type="number" class="form-control" id="dm_new_followers_amount" placeholder="Your amount here" value="{{instagram_account.features.direct_message_new_followers.bot_params.amount}}">
 							</div>

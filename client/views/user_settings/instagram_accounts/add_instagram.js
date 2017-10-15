@@ -74,10 +74,11 @@ Template.UserSettingsAddInstagram.events({
 
 		let features_direct_message_followers = $(e.target).find('#direct_message_followers').prop('checked');
 		let dm_followers = $(e.target).find('#dm_followers').val();
+		let dm_followers_message = $(e.target).find('#dm_followers_message').val();
 		let dm_followers_amount = $(e.target).find('#dm_followers_amount').val();
 
 		let features_direct_message_new_followers = $(e.target).find('#direct_message_new_followers').prop('checked');
-		let dm_new_followers = $(e.target).find('#dm_new_followers').val();
+		let dm_new_followers_message = $(e.target).find('#dm_new_followers_message').val();
 		let dm_new_followers_amount = $(e.target).find('#dm_new_followers_amount').val();
 
 		let features_get_user_followers = $(e.target).find('#get_user_followers').prop('checked');
@@ -173,7 +174,8 @@ Template.UserSettingsAddInstagram.events({
 					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
-						locations: dm_followers.split(','),
+						message: dm_followers_message,
+						users: dm_followers.split(','),
 						amount: dm_followers_amount
 					},
 					active: features_direct_message_followers ? true : false
@@ -182,7 +184,7 @@ Template.UserSettingsAddInstagram.events({
 					start_timestamp: get_start_timestamp(),
 					repeat_time: 21600,
 					bot_params: {
-						locations: dm_new_followers.split(','),
+						message: dm_new_followers_message,
 						amount: dm_new_followers_amount
 					},
 					active: features_direct_message_new_followers ? true : false
