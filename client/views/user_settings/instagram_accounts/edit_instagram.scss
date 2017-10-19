@@ -8,7 +8,7 @@
         }
     
         .params {
-            div {
+            >div {
                 margin: 10px;
 
                 $label-width: 65px;
@@ -26,6 +26,14 @@
                     resize: none;
                     width: calc(100% - #{$label-width} - 5px);
                 }
+
+                .tokenfield {
+                    display: inline-block;
+                    margin-bottom: 10px;
+                    margin-left: 0;
+                    margin-right: 0;
+                    padding: 0px;
+                }
             }
         }
     }
@@ -34,4 +42,12 @@
         margin-top: 30px;
     }
 
+}
+
+.token-input {
+    margin-top: 10px;
+}
+
+.tokenfield .token {
+    margin: 10px 0px 10px 5px;
 }

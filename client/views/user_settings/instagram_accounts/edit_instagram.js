@@ -33,6 +33,9 @@ Template.UserSettingsEditInstagram.onRendered(function() {
 		}
 	});
 
+	// Comma separated token field
+	$('.token-field').tokenfield()
+
 });
 
 Template.UserSettingsEditInstagram.events({
