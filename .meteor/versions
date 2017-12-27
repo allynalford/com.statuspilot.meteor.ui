@@ -50,6 +50,14 @@ iron:router@1.1.2
 iron:url@1.1.0
 jiku:bootstrap-toggle@0.0.1
 johannesma:meteor-flexslider@0.0.1
+jparker:crypto-aes@0.1.0
+jparker:crypto-base64@0.1.0
+jparker:crypto-cipher-core@0.1.1
+jparker:crypto-core@0.1.0
+jparker:crypto-evpkdf@0.1.1
+jparker:crypto-md5@0.1.1
+jparker:crypto-mode@0.1.1
+jparker:crypto-padding@0.1.0
 jquery@1.11.10
 kevohagan:sweetalert@1.0.0
 launch-screen@1.1.1

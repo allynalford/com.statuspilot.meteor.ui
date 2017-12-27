@@ -51,6 +51,14 @@ Template.UserSettingsEditInstagram.events({
 		let instaId = $(e.target).find('.single-wrap').attr('data-id');
 		let username = $(e.target).find('#username').val();
 		let insta_pass = $(e.target).find('#password').val();
+		// console.log(Meteor.settings.private.passphrase);
+		if (insta_pass) {
+			encrypted = CryptoJS.AES.encrypt(insta_pass, Meteor.settings.public.passphrase);
+			console.log(encrypted.toString());
+
+			decrypted = CryptoJS.AES.decrypt(encrypted.toString(), Meteor.settings.public.passphrase);
+			console.log(decrypted.toString(CryptoJS.enc.Utf8));
+		}
 		let target_audience = $(e.target).find('#target-audience').val();
 
 		let features_save_user_stats = $(e.target).find('#save_user_stats').prop('checked');

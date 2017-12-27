@@ -1,0 +1,12 @@
+{
+    "public": {
+        "passphrase": "doNOThijack",
+        "hello": "bello"
+    },
+    "private": {
+        "passphrase": "doYEShijack"
+    },
+    "bang": {
+        "anything": "hello"
+    }
+}

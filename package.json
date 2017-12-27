@@ -1,10 +1,10 @@
 {
   "name": "statuspilot",
   "version": "0.1.1",
-  "description": "None",
+  "description": "Meteor Based Management Portal",
   "private": true,
   "scripts": {
-    "start": "meteor",
+    "start": "meteor --settings settings-dev.json",
     "deploy": "DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy am.statuspilot.com --settings settings.json",
     "deploy-win": "SET DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com && meteor deploy --settings settings.json am.statuspilot.com"
   },
